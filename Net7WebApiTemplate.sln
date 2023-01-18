@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net7WebApiTemplate.Api", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net7WebApiTemplate.Application", "src\content\src\Net7WebApiTemplate.Application\Net7WebApiTemplate.Application.csproj", "{03BD9AA6-6766-4FDB-BCE4-F09209C8555F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net7WebApiTemplate.Domain", "src\content\src\Net7WebApiTemplate.Domain\Net7WebApiTemplate.Domain.csproj", "{AD044C03-FFD6-4E59-9696-8412F5278F91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{03BD9AA6-6766-4FDB-BCE4-F09209C8555F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03BD9AA6-6766-4FDB-BCE4-F09209C8555F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03BD9AA6-6766-4FDB-BCE4-F09209C8555F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD044C03-FFD6-4E59-9696-8412F5278F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD044C03-FFD6-4E59-9696-8412F5278F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD044C03-FFD6-4E59-9696-8412F5278F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD044C03-FFD6-4E59-9696-8412F5278F91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
