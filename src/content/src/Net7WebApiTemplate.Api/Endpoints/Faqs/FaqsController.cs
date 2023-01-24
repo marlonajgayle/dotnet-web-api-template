@@ -4,9 +4,9 @@ namespace Net7WebApiTemplate.Api.Endpoints.Faq
 {
     [Produces("application/json")]
     [ApiController]
-    public class FaqController : ControllerBase
+    public class FaqsController : ControllerBase
     {
-        public FaqController()
+        public FaqsController()
         {
         }
 
