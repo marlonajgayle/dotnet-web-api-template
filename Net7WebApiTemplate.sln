@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net7WebApiTemplate.Api", "src\content\src\Net7WebApiTemplate.Api\Net7WebApiTemplate.Api.csproj", "{8AA195DE-57E1-41C3-B574-8D8638D02E54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net7WebApiTemplate.Api", "src\content\src\Net7WebApiTemplate.Api\Net7WebApiTemplate.Api.csproj", "{8AA195DE-57E1-41C3-B574-8D8638D02E54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net7WebApiTemplate.Application", "src\content\src\Net7WebApiTemplate.Application\Net7WebApiTemplate.Application.csproj", "{03BD9AA6-6766-4FDB-BCE4-F09209C8555F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net7WebApiTemplate.Application", "src\content\src\Net7WebApiTemplate.Application\Net7WebApiTemplate.Application.csproj", "{03BD9AA6-6766-4FDB-BCE4-F09209C8555F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net7WebApiTemplate.Domain", "src\content\src\Net7WebApiTemplate.Domain\Net7WebApiTemplate.Domain.csproj", "{AD044C03-FFD6-4E59-9696-8412F5278F91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net7WebApiTemplate.Domain", "src\content\src\Net7WebApiTemplate.Domain\Net7WebApiTemplate.Domain.csproj", "{AD044C03-FFD6-4E59-9696-8412F5278F91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net7WebApiTemplate.Infrastructure", "src\content\src\Net7WebApiTemplate.Infrastructure\Net7WebApiTemplate.Infrastructure.csproj", "{F1A295EE-D430-4B8E-9E66-19563121BE81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net7WebApiTemplate.Persistence", "src\content\src\Net7WebApiTemplate.Persistence\Net7WebApiTemplate.Persistence.csproj", "{81AC5E50-2C4E-4052-B45B-DACC5C11EEA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{AD044C03-FFD6-4E59-9696-8412F5278F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD044C03-FFD6-4E59-9696-8412F5278F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD044C03-FFD6-4E59-9696-8412F5278F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A295EE-D430-4B8E-9E66-19563121BE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A295EE-D430-4B8E-9E66-19563121BE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A295EE-D430-4B8E-9E66-19563121BE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A295EE-D430-4B8E-9E66-19563121BE81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81AC5E50-2C4E-4052-B45B-DACC5C11EEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81AC5E50-2C4E-4052-B45B-DACC5C11EEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81AC5E50-2C4E-4052-B45B-DACC5C11EEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81AC5E50-2C4E-4052-B45B-DACC5C11EEA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
