@@ -3,11 +3,16 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Net7WebApiTemplate.Api.Filters;
 using Net7WebApiTemplate.Api.Swagger;
+using NLog.Web;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure NLog
+var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 // Add services to the container.
 
@@ -23,7 +28,7 @@ builder.Services.AddOptions<SwaggerGenOptions>()
     { 
         foreach (ApiVersionDescription description in service.ApiVersionDescriptions) 
         {
-            swagger.SwaggerDoc(description.GroupName, new Microsoft.OpenApi.Models.OpenApiInfo
+            swagger.SwaggerDoc(description.GroupName, new OpenApiInfo
             { 
                 Title = swaggerDocOptions.Title,
                 Version = description.ApiVersion.ToString(),
