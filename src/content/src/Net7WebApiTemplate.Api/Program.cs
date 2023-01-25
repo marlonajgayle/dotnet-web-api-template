@@ -6,6 +6,7 @@ using Net7WebApiTemplate.Api.Swagger;
 using NLog.Web;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,34 @@ var builder = WebApplication.CreateBuilder(args);
 var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();
+
+// loading appsettings.json based on environment configurations
+var env = builder.Environment;
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+        .AddJsonFile($"appsettings.Local.json", optional: true, reloadOnChange: true)
+        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+// apply user secrets when running on local environment
+if (env.EnvironmentName == "Local")
+{
+    var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
+    if (appAssembly != null)
+    {
+        builder.Configuration.AddUserSecrets(appAssembly, optional: true);
+    }
+}
+
+// add environment variables
+builder.Configuration.AddEnvironmentVariables();
+
+// apply commandline arguments
+if (args != null)
+{
+    builder.Configuration.AddCommandLine(args);
+}
+
+
 
 // Add services to the container.
 
