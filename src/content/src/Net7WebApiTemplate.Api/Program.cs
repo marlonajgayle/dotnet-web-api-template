@@ -41,9 +41,9 @@ if (args != null)
     builder.Configuration.AddCommandLine(args);
 }
 
-
-
-// Add services to the container.
+//-- Add services to the container.
+// needed to load configurations from appsettings.json
+builder.Services.AddOptions();
 
 builder.Services.AddControllers();
 
@@ -97,6 +97,7 @@ builder.Services.AddOptions<SwaggerGenOptions>()
         swagger.IncludeXmlComments(xmlPath);
     
     });
+
 // Register and configure API versioning
 builder.Services.AddApiVersioning(options =>
 {
@@ -114,7 +115,7 @@ builder.Services.AddVersionedApiExplorer(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//-- Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
