@@ -6,7 +6,6 @@ using Net7WebApiTemplate.Api.Swagger;
 using NLog.Web;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
