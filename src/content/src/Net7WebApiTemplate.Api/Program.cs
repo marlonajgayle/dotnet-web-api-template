@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Net7WebApiTemplate.Api.Filters;
 using Net7WebApiTemplate.Api.Swagger;
+using Net7WebApiTemplate.Infrastructure;
+using Net7WebApiTemplate.Persistence;
+using Net7WebApiTemplate.Application;
 using NLog.Web;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
@@ -43,6 +46,12 @@ if (args != null)
 //-- Add services to the container.
 // needed to load configurations from appsettings.json
 builder.Services.AddOptions();
+
+// Add library project reference
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
+builder.Services.AddPersistence(builder.Configuration);
+
 
 builder.Services.AddControllers();
 
