@@ -9,6 +9,9 @@ using Net7WebApiTemplate.Application;
 using NLog.Web;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Net7WebApiTemplate.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -132,7 +135,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
+
+// Configure custom healthcheck endpoint
+app.MapHealthChecks("/health", new HealthCheckOptions()
+{
+    ResponseWriter = HealthCheckResponseWriter.WriterHealthCheckResponse,
+    AllowCachingResponses = false
+});
+
 
 app.MapControllers();
 
