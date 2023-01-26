@@ -124,14 +124,31 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
+//-- Configure the HTTP request pipeline
 var app = builder.Build();
-
-//-- Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Local") || app.Environment.IsEnvironment("Test"))
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // Enable HTTP Strict Transport Security Protocol (HSTS)
+    app.UseHsts();
+}
+
+// Enable NWebSec Security Response Headers
+app.UseXContentTypeOptions();
+app.UseXfo(options => options.SameOrigin());
+app.UseXXssProtection(options => options.EnabledWithBlockMode());
+app.UseReferrerPolicy(options => options.NoReferrerWhenDowngrade());
+
+// Feature-Policy security Header
+app.Use(async (context, next) => 
+{
+    context.Response.Headers.Add("Feature-Policy", "geolocation 'none'; midi 'none';");
+    await next.Invoke();
+});
 
 app.UseHttpsRedirection();
 
