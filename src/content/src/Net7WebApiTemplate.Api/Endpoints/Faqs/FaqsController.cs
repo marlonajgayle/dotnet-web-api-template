@@ -15,7 +15,8 @@ namespace Net7WebApiTemplate.Api.Endpoints.Faq
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/v1/faqs")]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/faqs")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
