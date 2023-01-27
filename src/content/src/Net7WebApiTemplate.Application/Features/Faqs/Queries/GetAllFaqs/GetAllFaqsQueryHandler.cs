@@ -1,10 +1,10 @@
-﻿using MediatR;
+﻿using Mediator;
 
 namespace Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs
 {
-    public class GetAllFaqsQueryHandler : IRequestHandler<GetAllFaqsQuery, IList<GetFaqDto>>
+    public class GetAllFaqsQueryHandler : IRequestHandler<GetAllFaqsQuery, List<GetFaqDto>>
     {
-        public  async Task<IList<GetFaqDto>> Handle(GetAllFaqsQuery request, CancellationToken cancellationToken)
+        public ValueTask<List<GetFaqDto>> Handle(GetAllFaqsQuery request, CancellationToken cancellationToken)
         {
             var faqs = new List<GetFaqDto>
             {
@@ -15,7 +15,7 @@ namespace Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs
                 }
             };
 
-            return faqs;
+            return ValueTask.FromResult(faqs);
         }
     }
 }

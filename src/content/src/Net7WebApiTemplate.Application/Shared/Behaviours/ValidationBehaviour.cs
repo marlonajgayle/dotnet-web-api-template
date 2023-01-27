@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MediatR;
+using Mediator;
 using ValidationException = Net7WebApiTemplate.Application.Shared.Exceptions.ValidationException;
 
 namespace Net7WebApiTemplate.Application.Shared.Behaviours
@@ -14,11 +14,11 @@ namespace Net7WebApiTemplate.Application.Shared.Behaviours
             _validators = validators;
         }
 
-        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        public async ValueTask<TResponse> Handle(TRequest message, CancellationToken cancellationToken, MessageHandlerDelegate<TRequest, TResponse> next)
         {
-            if (_validators.Any()) 
+            if (_validators.Any())
             {
-                var context = new ValidationContext<TRequest>(request);
+                var context = new ValidationContext<TRequest>(message);
                 var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
                 var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
@@ -29,7 +29,7 @@ namespace Net7WebApiTemplate.Application.Shared.Behaviours
 
             }
 
-            return await next();
+            return await next(message, cancellationToken);
         }
     }
 }

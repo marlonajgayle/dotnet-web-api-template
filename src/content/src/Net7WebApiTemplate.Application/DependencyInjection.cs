@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MediatR;
+using Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using Net7WebApiTemplate.Application.Features.HealthChecks;
 using Net7WebApiTemplate.Application.Shared.Behaviours;
@@ -19,10 +19,12 @@ namespace Net7WebApiTemplate.Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Register MediatR Services
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediator();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour <,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+            services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+            services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 
             return services;
         }

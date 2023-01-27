@@ -1,6 +1,6 @@
 ﻿
 
-using MediatR;
+using Mediator;
 using Microsoft.Extensions.Logging;
 
 namespace Net7WebApiTemplate.Application.Shared.Behaviours
@@ -15,18 +15,18 @@ namespace Net7WebApiTemplate.Application.Shared.Behaviours
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        public async ValueTask<TResponse> Handle(TRequest message, CancellationToken cancellationToken, MessageHandlerDelegate<TRequest, TResponse> next)
         {
-            try 
+            try
             {
-                return await next();
+                return await next(message, cancellationToken);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 var requestName = typeof(TRequest).Name;
 
                 _logger.LogError(ex, "Net7WebApiTemplate Request: Unhandled Exception for request {Name} {@Request}",
-                    requestName, request);
+                    requestName, message);
 
                 throw;
             }

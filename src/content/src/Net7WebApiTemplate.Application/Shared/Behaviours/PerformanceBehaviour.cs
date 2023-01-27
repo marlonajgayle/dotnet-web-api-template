@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using Mediator;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
@@ -16,20 +16,20 @@ namespace Net7WebApiTemplate.Application.Shared.Behaviours
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        public async ValueTask<TResponse> Handle(TRequest message, CancellationToken cancellationToken, MessageHandlerDelegate<TRequest, TResponse> next)
         {
             _timer.Start();
 
-            var response = await next();
+            var response = await next(message, cancellationToken);
             var elapsedMilliseconds = _timer.ElapsedMilliseconds;
 
             // any request taking longer than 2 seconds should be reported
-            if(elapsedMilliseconds > 2000) 
+            if (elapsedMilliseconds > 2000)
             {
                 var requestName = typeof(TRequest).Name;
 
-                _logger.LogWarning("Net7WebApiTemplate long running request: {name} ({elapsedMilliseconds} milliseconds) {@Request}]",
-                    requestName, elapsedMilliseconds, request);
+                _logger.LogWarning("Long running request: {name} ({elapsedMilliseconds} milliseconds) {@Request}]",
+                    requestName, elapsedMilliseconds, message);
             }
 
             return response;
