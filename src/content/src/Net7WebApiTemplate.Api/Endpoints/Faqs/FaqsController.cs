@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Faq
 {
@@ -6,8 +8,11 @@ namespace Net7WebApiTemplate.Api.Endpoints.Faq
     [ApiController]
     public class FaqsController : ControllerBase
     {
-        public FaqsController()
+        private readonly IMediator _mediator;
+
+        public FaqsController(IMediator mediator)
         {
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -20,7 +25,10 @@ namespace Net7WebApiTemplate.Api.Endpoints.Faq
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok();
+            var query = new GetAllFaqsQuery();
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
         }
     }
 }

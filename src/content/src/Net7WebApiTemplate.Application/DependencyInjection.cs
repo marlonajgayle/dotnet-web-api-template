@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Net7WebApiTemplate.Application.Features.HealthChecks;
 using Net7WebApiTemplate.Application.Shared.Behaviours;
@@ -13,6 +14,9 @@ namespace Net7WebApiTemplate.Application
             // Register Application Health Checks
             services.AddHealthChecks()
                 .AddCheck<ApplicationHealthCheck>(name: "Net7WebApiTemplate API");
+
+            // Register Fluent Validation serivce
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Register MediatR Services
             services.AddMediatR(Assembly.GetExecutingAssembly());
