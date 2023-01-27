@@ -6,19 +6,22 @@ using Net7WebApiTemplate.Api.Swagger;
 using Net7WebApiTemplate.Infrastructure;
 using Net7WebApiTemplate.Persistence;
 using Net7WebApiTemplate.Application;
-using NLog.Web;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Net7WebApiTemplate.Api.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure NLog
-var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+// Configure Serilog
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
 builder.Logging.ClearProviders();
-builder.Host.UseNLog();
+builder.Logging.AddSerilog(logger);
 
 // loading appsettings.json based on environment configurations
 var env = builder.Environment;
