@@ -127,6 +127,14 @@ builder.Services.AddOptions<SwaggerGenOptions>()
     
     });
 
+// Configure HTTP Strict Transport Security Protocol (HSTS)
+builder.Services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(1);
+});
+
 // Register and configure API versioning
 builder.Services.AddApiVersioning(options =>
 {
