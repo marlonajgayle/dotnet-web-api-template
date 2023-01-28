@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Net7WebApiTemplate.Api.Services;
 using Serilog;
+using AspNetCoreRateLimit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +53,20 @@ if (args != null)
 //-- Add services to the container.
 // needed to load configurations from appsettings.json
 builder.Services.AddOptions();
+
+// needed to store rate limit counters and ip rules
+builder.Services.AddMemoryCache();
+
+// load general configuration from appsettings.json
+builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+
+// inject counter and rules stores
+builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+
+// configuration (resolvers, counter key builders)
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
 
 // Add library project reference
 builder.Services.AddApplication();
@@ -152,6 +167,9 @@ app.Use(async (context, next) =>
     context.Response.Headers.Add("Feature-Policy", "geolocation 'none'; midi 'none';");
     await next.Invoke();
 });
+
+// Enable IP Rate Limiting Middleware
+app.UseIpRateLimiting();
 
 app.UseHttpsRedirection();
 

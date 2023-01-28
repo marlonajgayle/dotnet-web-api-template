@@ -12,6 +12,7 @@
   </PropertyGroup>
 	
   <ItemGroup>
+    <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
     <PackageReference Include="Mediator.Abstractions" Version="2.0.30" />
     <PackageReference Include="Mediator.SourceGenerator" Version="2.0.30">
       <PrivateAssets>all</PrivateAssets>
