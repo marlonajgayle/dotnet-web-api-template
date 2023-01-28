@@ -127,6 +127,9 @@ builder.Services.AddOptions<SwaggerGenOptions>()
     
     });
 
+builder.Services.AddControllersWithViews(options =>
+    options.Filters.Add<ApiExceptionFilterAttribute>());
+
 // Configure HTTP Strict Transport Security Protocol (HSTS)
 builder.Services.AddHsts(options =>
 {
@@ -191,7 +194,6 @@ app.MapHealthChecks("/health", new HealthCheckOptions()
     ResponseWriter = HealthCheckResponseWriter.WriterHealthCheckResponse,
     AllowCachingResponses = false
 });
-
 
 app.MapControllers();
 
