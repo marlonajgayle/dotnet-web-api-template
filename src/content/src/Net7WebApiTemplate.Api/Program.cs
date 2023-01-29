@@ -138,6 +138,19 @@ builder.Services.AddHsts(options =>
     options.MaxAge = TimeSpan.FromDays(1);
 });
 
+// Register and configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CorsPolicy",
+        options =>
+        {
+            options.WithOrigins(builder.Configuration.GetSection("Cors:Origins")
+            .Get<string[]>() ?? Array.Empty<string>())
+            .WithMethods("OPTIONS", "GET", "POST", "PUT", "DELETE")
+            .AllowCredentials();
+        });
+});
+
 // Register and configure API versioning
 builder.Services.AddApiVersioning(options =>
 {
@@ -185,6 +198,8 @@ app.UseIpRateLimiting();
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseCors();
 
 app.UseAuthorization();
 
