@@ -14,8 +14,11 @@ namespace Net7WebApiTemplate.Api.Filters
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
-                { typeof(ValidationException), HandleValidationException },
-                { typeof(NotFoundException), HandleNotFoundException }
+                
+                { typeof(NotFoundException), HandleNotFoundException },
+                { typeof(UnauthorizedException), HandleUnauthorizedException },
+                { typeof(ValidationException), HandleValidationException }
+                
             };
         }
 
@@ -58,7 +61,7 @@ namespace Net7WebApiTemplate.Api.Filters
             context.ExceptionHandled = true;
         }
 
-        private void HandleInvalidModelStateException(ExceptionContext context)
+        private static void HandleInvalidModelStateException(ExceptionContext context)
         {
             var details = new ValidationProblemDetails(context.ModelState)
             {
@@ -86,7 +89,23 @@ namespace Net7WebApiTemplate.Api.Filters
             context.ExceptionHandled = true;
         }
 
-        private void HandleUnknownException(ExceptionContext context)
+        private void HandleUnauthorizedException(ExceptionContext context)
+        {
+            var exception = context.Exception as UnauthorizedException;
+
+            var details = new ProblemDetails()
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                Title = "Unauthorized",
+                Detail = exception.Message
+            };
+
+            context.Result = new NotFoundObjectResult(details);
+
+            context.ExceptionHandled = true;
+        }
+
+        private static void HandleUnknownException(ExceptionContext context)
         {
             var details = new ProblemDetails
             {
