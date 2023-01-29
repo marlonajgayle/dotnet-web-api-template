@@ -12,7 +12,7 @@ namespace Net7WebApiTemplate.Application.Shared.Behaviours
 
         public PerformanceBehaviour(ILogger<TRequest> logger)
         {
-            _timer= new Stopwatch();
+            _timer = new Stopwatch();
             _logger = logger;
         }
 

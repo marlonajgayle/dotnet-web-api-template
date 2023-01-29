@@ -9,7 +9,7 @@ namespace Net7WebApiTemplate.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services) 
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             // Register Application Health Checks
             services.AddHealthChecks()
@@ -21,7 +21,7 @@ namespace Net7WebApiTemplate.Application
             // Register MediatR Services
             //services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddMediator();
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour <,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));

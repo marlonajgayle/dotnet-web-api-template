@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
-
-namespace Net7WebApiTemplate.Application.Features.HealthChecks
+﻿namespace Net7WebApiTemplate.Application.Features.HealthChecks
 {
     public class HealthCheckResponse
     {

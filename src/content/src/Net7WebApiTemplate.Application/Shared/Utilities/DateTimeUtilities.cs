@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace Net7WebApiTemplate.Application.Shared.Utilities
+﻿namespace Net7WebApiTemplate.Application.Shared.Utilities
 {
     public static class DateTimeUtilities
     {
@@ -11,7 +9,7 @@ namespace Net7WebApiTemplate.Application.Shared.Utilities
         }
     }
 
-    public class TimeZones 
+    public class TimeZones
     {
         public string Value { get; set; }
 

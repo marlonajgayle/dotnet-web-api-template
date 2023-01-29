@@ -24,9 +24,9 @@ namespace Net7WebApiTemplate.Api.Filters
                 In = ParameterLocation.Header
             };
 
-            operation.Security = new List<OpenApiSecurityRequirement> 
+            operation.Security = new List<OpenApiSecurityRequirement>
             {
-                new OpenApiSecurityRequirement 
+                new OpenApiSecurityRequirement
                 {
                     [bearerScheme] = new [] {""}
                 }

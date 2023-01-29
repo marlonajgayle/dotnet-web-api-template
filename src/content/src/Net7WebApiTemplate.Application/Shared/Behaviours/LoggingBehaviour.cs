@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace Net7WebApiTemplate.Application.Shared.Behaviours
 {
     public class LoggingBehaviour<TMessage, TResponse> : IPipelineBehavior<TMessage, TResponse>
-        where TMessage: IMessage
+        where TMessage : IMessage
     {
         private readonly ILogger<TMessage> _logger;
 
@@ -18,7 +18,7 @@ namespace Net7WebApiTemplate.Application.Shared.Behaviours
             var requestName = typeof(TMessage).Name;
             _logger.LogInformation("Net7WebApiTemplate Request: {name}, {@Request}", requestName, message);
 
-            return await next(message, cancellationToken); 
+            return await next(message, cancellationToken);
         }
     }
 }

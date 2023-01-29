@@ -1,18 +1,17 @@
+using AspNetCoreRateLimit;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Net7WebApiTemplate.Api.Filters;
+using Net7WebApiTemplate.Api.Services;
 using Net7WebApiTemplate.Api.Swagger;
+using Net7WebApiTemplate.Application;
 using Net7WebApiTemplate.Infrastructure;
 using Net7WebApiTemplate.Persistence;
-using Net7WebApiTemplate.Application;
+using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Net7WebApiTemplate.Api.Services;
-using Serilog;
-using AspNetCoreRateLimit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,23 +81,23 @@ builder.Configuration.GetSection(nameof(SwaggerDocOptions)).Bind(swaggerDocOptio
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddOptions<SwaggerGenOptions>()
-    .Configure<IApiVersionDescriptionProvider>((swagger, service) => 
-    { 
-        foreach (ApiVersionDescription description in service.ApiVersionDescriptions) 
+    .Configure<IApiVersionDescriptionProvider>((swagger, service) =>
+    {
+        foreach (ApiVersionDescription description in service.ApiVersionDescriptions)
         {
             swagger.SwaggerDoc(description.GroupName, new OpenApiInfo
-            { 
+            {
                 Title = swaggerDocOptions.Title,
                 Version = description.ApiVersion.ToString(),
                 Description = swaggerDocOptions.Description,
                 TermsOfService = new Uri("https://github.com"),
                 Contact = new OpenApiContact
-                { 
+                {
                     Name = swaggerDocOptions.Organization,
-                    Email= swaggerDocOptions.Email
+                    Email = swaggerDocOptions.Email
                 },
                 License = new OpenApiLicense
-                { 
+                {
                     Name = "MIT",
                     Url = new Uri("https://github.com/")
                 }
@@ -110,7 +109,7 @@ builder.Services.AddOptions<SwaggerGenOptions>()
             {"Beaer", Array.Empty<string>()}
         };
 
-        swagger.AddSecurityDefinition("bearer", new OpenApiSecurityScheme 
+        swagger.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
         {
             Description = "JWT authorization header using the Bearer scheme.",
             Name = "Authorization",
@@ -124,7 +123,7 @@ builder.Services.AddOptions<SwaggerGenOptions>()
         var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         swagger.IncludeXmlComments(xmlPath);
-    
+
     });
 
 // Register API Exception Filter
@@ -187,7 +186,7 @@ app.UseXXssProtection(options => options.EnabledWithBlockMode());
 app.UseReferrerPolicy(options => options.NoReferrerWhenDowngrade());
 
 // Feature-Policy security Header
-app.Use(async (context, next) => 
+app.Use(async (context, next) =>
 {
     context.Response.Headers.Add("Feature-Policy", "geolocation 'none'; midi 'none';");
     await next.Invoke();

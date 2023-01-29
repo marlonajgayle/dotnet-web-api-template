@@ -7,7 +7,7 @@ namespace Net7WebApiTemplate.Application.Shared.Exceptions
         public IDictionary<string, string[]> Errors { get; }
 
         public ValidationException()
-            :base("One or more validation failures have occured.")
+            : base("One or more validation failures have occured.")
         {
             Errors = new Dictionary<string, string[]>();
         }

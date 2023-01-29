@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Net7WebApiTemplate.Application.Features.HealthChecks;
 using Newtonsoft.Json;
-using System.Xml;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace Net7WebApiTemplate.Api.Services
