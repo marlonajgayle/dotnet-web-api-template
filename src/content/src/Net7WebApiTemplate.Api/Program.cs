@@ -127,6 +127,7 @@ builder.Services.AddOptions<SwaggerGenOptions>()
     
     });
 
+// Register API Exception Filter
 builder.Services.AddControllersWithViews(options =>
     options.Filters.Add<ApiExceptionFilterAttribute>());
 
