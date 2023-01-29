@@ -70,7 +70,7 @@ builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrateg
 // Add library project reference
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
-builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddPersistence(builder.Configuration, builder.Environment);
 
 
 builder.Services.AddControllers();
