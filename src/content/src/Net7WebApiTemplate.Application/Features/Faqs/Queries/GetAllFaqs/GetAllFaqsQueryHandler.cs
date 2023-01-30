@@ -1,31 +1,44 @@
 ﻿using Mediator;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Net7WebApiTemplate.Application.Shared.Extensions;
+using Net7WebApiTemplate.Application.Shared.Interface;
+using Net7WebApiTemplate.Application.Shared.Models;
 
 namespace Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs
 {
-    public class GetAllFaqsQueryHandler : IRequestHandler<GetAllFaqsQuery, List<GetFaqDto>>
+    public sealed class GetAllFaqsQueryHandler : IRequestHandler<GetAllFaqsQuery, PaginatedList<GetFaqDto>>
     {
+        private readonly INet7WebApiTemplateDbContext _dbContext;
         private readonly ILogger<GetAllFaqsQueryHandler> _logger;
 
-        public GetAllFaqsQueryHandler(ILogger<GetAllFaqsQueryHandler> logger)
+        public GetAllFaqsQueryHandler(INet7WebApiTemplateDbContext dbContext, ILogger<GetAllFaqsQueryHandler> logger)
         {
+            _dbContext = dbContext;
             _logger = logger;
         }
 
-        public ValueTask<List<GetFaqDto>> Handle(GetAllFaqsQuery request, CancellationToken cancellationToken)
+        public async ValueTask<PaginatedList<GetFaqDto>> Handle(GetAllFaqsQuery request, CancellationToken cancellationToken)
         {
-            var faqs = new List<GetFaqDto>
+            var faqQuery =  _dbContext.Faqs.AsQueryable();
+
+            if (!string.IsNullOrEmpty(request.SearchTerm))
             {
-                new GetFaqDto
-                {
-                    Question = "How to fix CORS Issue?",
-                    Answer = "Register services.AddCors() method in the dependecy injection class."
-                }
-            };
+                faqQuery = faqQuery.Where(q => q.Question.Contains(request.SearchTerm.Trim()));
+            }
 
-            _logger.LogInformation("retrieved FAQS..");
+            var faqs = await faqQuery
+                .AsNoTracking()
+                .Select(f => new GetFaqDto 
+                { 
+                    Question = f.Question,
+                    Answer = f.Answer
+                })
+                .PaginatedListAsync(request.Offset, request.Limit, cancellationToken);
 
-            return ValueTask.FromResult(faqs);
+            _logger.LogInformation("retrieved FAQS.");
+
+            return faqs;
         }
     }
 }

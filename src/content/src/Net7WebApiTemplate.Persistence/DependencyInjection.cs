@@ -29,8 +29,6 @@ namespace Net7WebApiTemplate.Persistence
                 b => b.MigrationsAssembly(typeof(Net7WebApiTemplateDbContext).Assembly.FullName))
                 .LogTo(Console.WriteLine, LogLevel.Information));
             }
-            
-
 
             services.AddScoped<INet7WebApiTemplateDbContext>(provider =>
                 provider.GetService<Net7WebApiTemplateDbContext>());
