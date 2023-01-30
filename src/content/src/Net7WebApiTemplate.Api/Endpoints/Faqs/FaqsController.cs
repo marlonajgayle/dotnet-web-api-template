@@ -1,5 +1,6 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Mvc;
+using Net7WebApiTemplate.Api.Endpoints.Faqs;
 using Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Faq
@@ -23,9 +24,14 @@ namespace Net7WebApiTemplate.Api.Endpoints.Faq
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/faqs")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(FaqRequest request)
         {
-            var query = new GetAllFaqsQuery();
+            var query = new GetAllFaqsQuery()
+            { 
+                SearchTerm = request.SearchTerm,
+                Offset = request.Offset,
+                Limit = request.Limit,
+            };
             var result = await _mediator.Send(query);
 
             return Ok(result);
