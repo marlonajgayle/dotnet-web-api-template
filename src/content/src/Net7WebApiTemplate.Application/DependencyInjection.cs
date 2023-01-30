@@ -20,7 +20,11 @@ namespace Net7WebApiTemplate.Application
 
             // Register MediatR Services
             //services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddMediator();
+            services.AddMediator(options => 
+            {
+                options.Namespace = "SimpleConsole.Mediator";
+                options.ServiceLifetime = ServiceLifetime.Transient;
+            });
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
