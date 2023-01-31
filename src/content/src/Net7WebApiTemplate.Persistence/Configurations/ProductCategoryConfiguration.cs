@@ -8,7 +8,9 @@ namespace Net7WebApiTemplate.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductCatergory> builder)
         {
-            builder.Property(e => e.CategoryId).HasColumnName("CategoryID");
+            builder.Property(e => e.CategoryId)
+                .HasColumnName("CategoryID")
+                .ValueGeneratedOnAdd();
 
             builder.Property( e=> e.CategoryName)
                 .HasMaxLength(150)
