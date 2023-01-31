@@ -8,6 +8,8 @@ namespace Net7WebApiTemplate.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.HasKey(e => e.ProductId);
+
             builder.Property(e => e.ProductId)
                 .HasColumnName("ProductID")
                 .ValueGeneratedOnAdd();
