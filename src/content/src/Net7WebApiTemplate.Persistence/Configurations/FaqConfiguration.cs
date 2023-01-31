@@ -4,7 +4,7 @@ using Net7WebApiTemplate.Domain.Entities;
 
 namespace Net7WebApiTemplate.Persistence.Configurations
 {
-    public class FaqConfigurations : IEntityTypeConfiguration<Faq>
+    public class FaqConfiguration : IEntityTypeConfiguration<Faq>
     {
         public void Configure(EntityTypeBuilder<Faq> builder)
         {
@@ -17,7 +17,7 @@ namespace Net7WebApiTemplate.Persistence.Configurations
                 .IsRequired();
 
             builder.Property(e => e.Answer)
-                .HasMaxLength(300)
+                .HasMaxLength(500)
                 .IsRequired();
         }
     }
