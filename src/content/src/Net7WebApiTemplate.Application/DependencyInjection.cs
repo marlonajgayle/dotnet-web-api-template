@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using HashidsCore.NET;
 using Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using Net7WebApiTemplate.Application.Features.HealthChecks;
@@ -17,6 +18,9 @@ namespace Net7WebApiTemplate.Application
 
             // Register Fluent Validation serivce
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Register Hash ids service that allows you to hash ids like youtube
+            services.AddSingleton<IHashids>(_ => new Hashids("salt", 11));
 
             // Register MediatR Services
             //services.AddMediatR(Assembly.GetExecutingAssembly());

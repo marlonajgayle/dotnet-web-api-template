@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net7WebApiTemplate.Application.Shared.Interface;
+using Net7WebApiTemplate.Infrastructure.ApiClients.GitHub;
 using Net7WebApiTemplate.Infrastructure.Cache.InMemory;
+using Net7WebApiTemplate.Infrastructure.DataProtection;
 using Polly;
 
 namespace Net7WebApiTemplate.Infrastructure
@@ -12,6 +15,11 @@ namespace Net7WebApiTemplate.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration,
             IWebHostEnvironment environment)
         {
+
+            // Register Data Protection
+            services.AddDataProtection();
+            services.AddSingleton<IEncryptionManager, EncryptionManager>();
+
             // Register Http Client
             services.AddHttpClient(name: "GitHub", client =>
             {
@@ -23,7 +31,7 @@ namespace Net7WebApiTemplate.Infrastructure
                 .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromMilliseconds(300)));
                 
             // Register GitHub API Service
-            services.AddScoped<IGitHubService, IGitHubService>();
+            services.AddScoped<IGitHubService, GitHubApiService>();
 
             // Register InMemory Cache
             services.AddMemoryCache();

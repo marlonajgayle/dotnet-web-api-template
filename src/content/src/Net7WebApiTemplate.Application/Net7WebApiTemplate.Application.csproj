@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.4.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+    <PackageReference Include="HashidsCore.NET" Version="1.0.0" />
     <PackageReference Include="Mediator.Abstractions" Version="2.0.30" />
     <PackageReference Include="Mediator.SourceGenerator" Version="2.0.30">
       <PrivateAssets>all</PrivateAssets>
