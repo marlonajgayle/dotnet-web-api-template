@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Net7WebApiTemplate.Application.Features.Products.Commands;
 using Net7WebApiTemplate.Application.Features.Products.Commands.DeleteProduct;
+using Net7WebApiTemplate.Application.Features.Products.Commands.UpdateProduct;
 using Net7WebApiTemplate.Application.Features.Products.Queries.GetAllProducts;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Products
@@ -36,7 +37,25 @@ namespace Net7WebApiTemplate.Api.Endpoints.Products
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
             var command = new CreateProductCommand()
-            { 
+            {
+                ProductName = request.ProductName,
+                ProductDescription = request.ProductDescription,
+                ProductPrice = request.Price
+            };
+            var result = await _mediator.Send(command);
+
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/products")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Update([FromBody] UpdateProductRequest request)
+        {
+            var command = new UpdateProductCommand()
+            {
+                Id = request.ProductId,
                 ProductName = request.ProductName,
                 ProductDescription = request.ProductDescription,
                 ProductPrice = request.Price
