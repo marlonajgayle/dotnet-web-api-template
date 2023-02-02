@@ -4,7 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Net7WebApiTemplate.Application.Features.Products.Interfaces;
 using Net7WebApiTemplate.Application.Shared.Interface;
+using Net7WebApiTemplate.Persistence.Repositories;
 
 namespace Net7WebApiTemplate.Persistence
 {
@@ -16,13 +18,17 @@ namespace Net7WebApiTemplate.Persistence
             services.AddHealthChecks()
                 .AddDbContextCheck<Net7WebApiTemplateDbContext>(name: "Application Database");
 
-            if (environment.IsProduction()) 
+            // Register Dapper DbContext and Repositories
+            services.AddSingleton<DapperDbContext>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            if (environment.IsProduction())
             {
                 services.AddDbContext<Net7WebApiTemplateDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DatabaseConnection"),
                 b => b.MigrationsAssembly(typeof(Net7WebApiTemplateDbContext).Assembly.FullName)));
             }
-            else 
+            else
             {
                 services.AddDbContext<Net7WebApiTemplateDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DatabaseConnection"),
