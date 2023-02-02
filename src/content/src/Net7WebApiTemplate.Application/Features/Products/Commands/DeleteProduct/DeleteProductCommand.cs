@@ -22,7 +22,7 @@ namespace Net7WebApiTemplate.Application.Features.Products.Commands.DeleteProduc
         {
             var entity = _dbContext.Products.FirstOrDefault(p => p.ProductId == request.Id);
 
-            if (entity == null) 
+            if (entity == null)
             {
                 throw new NotFoundException();
             }

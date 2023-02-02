@@ -20,7 +20,7 @@ namespace Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs
 
         public async ValueTask<PaginatedList<GetFaqDto>> Handle(GetAllFaqsQuery request, CancellationToken cancellationToken)
         {
-            var faqQuery =  _dbContext.Faqs.AsQueryable();
+            var faqQuery = _dbContext.Faqs.AsQueryable();
 
             if (!string.IsNullOrEmpty(request.SearchTerm))
             {
@@ -29,8 +29,8 @@ namespace Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs
 
             var faqs = await faqQuery
                 .AsNoTracking()
-                .Select(f => new GetFaqDto 
-                { 
+                .Select(f => new GetFaqDto
+                {
                     Question = f.Question,
                     Answer = f.Answer
                 })

@@ -8,7 +8,7 @@ namespace Net7WebApiTemplate.Application.Features.Products.Queries.GetAllProduct
 {
     public record GetAllProductsQuery : IRequest<PaginatedList<ProductsDto>>
     {
-        public int Offset { get; set; } 
+        public int Offset { get; set; }
         public int Limit { get; set; }
     }
 

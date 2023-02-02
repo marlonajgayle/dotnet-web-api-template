@@ -12,7 +12,7 @@
         }
 
         public PaginationRequest(int offset, int limit)
-        { 
+        {
             Offset = offset;
             Limit = limit;
         }

@@ -7,6 +7,6 @@ namespace Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs
     {
         public string SearchTerm { get; set; } = string.Empty;
         public int Offset { get; set; }
-        public int Limit { get; set; }  
+        public int Limit { get; set; }
     }
 }

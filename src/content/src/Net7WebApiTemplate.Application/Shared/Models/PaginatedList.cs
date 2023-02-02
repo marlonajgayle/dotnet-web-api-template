@@ -2,7 +2,7 @@
 
 namespace Net7WebApiTemplate.Application.Shared.Models
 {
-    public class PaginatedList <T>
+    public class PaginatedList<T>
     {
         public int CurrentPage { get; }
         public int PageSize { get; }
@@ -19,7 +19,7 @@ namespace Net7WebApiTemplate.Application.Shared.Models
             Items = items;
         }
 
-        public static async ValueTask<PaginatedList<T>> CreateAsync(IQueryable<T> query, int currentPage, int pageSize, 
+        public static async ValueTask<PaginatedList<T>> CreateAsync(IQueryable<T> query, int currentPage, int pageSize,
             CancellationToken cancellationToken)
         {
             int count = await query.CountAsync();

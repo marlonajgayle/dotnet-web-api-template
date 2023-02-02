@@ -4,7 +4,7 @@ namespace Net7WebApiTemplate.Application.Features.Products.Commands.CreateProduc
 {
     public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {
-        public CreateProductCommandValidator() 
+        public CreateProductCommandValidator()
         {
             RuleFor(v => v.ProductName)
                 .NotEmpty().WithMessage("Product name field is required!")

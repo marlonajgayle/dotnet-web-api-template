@@ -27,7 +27,7 @@ namespace Net7WebApiTemplate.Api.Endpoints.Faq
         public async Task<IActionResult> GetAll(FaqRequest request)
         {
             var query = new GetAllFaqsQuery()
-            { 
+            {
                 SearchTerm = request.SearchTerm,
                 Offset = request.Offset,
                 Limit = request.Limit,

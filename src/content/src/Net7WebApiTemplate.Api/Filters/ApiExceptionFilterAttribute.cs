@@ -14,11 +14,11 @@ namespace Net7WebApiTemplate.Api.Filters
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
-                
+
                 { typeof(NotFoundException), HandleNotFoundException },
                 { typeof(UnauthorizedException), HandleUnauthorizedException },
                 { typeof(ValidationException), HandleValidationException }
-                
+
             };
         }
 
