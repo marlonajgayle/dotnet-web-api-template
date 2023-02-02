@@ -27,6 +27,6 @@ namespace Net7WebApiTemplate.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(Net7WebApiTemplateDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
-        
+
     }
 }

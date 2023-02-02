@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net7WebApiTemplate.Application.Shared.Interface;
@@ -29,13 +28,13 @@ namespace Net7WebApiTemplate.Infrastructure
             })
                 // Polly retry policy that is configgured to handle errors (HTTP 5XX, HTTP 408)
                 .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromMilliseconds(300)));
-                
+
             // Register GitHub API Service
             services.AddScoped<IGitHubService, GitHubApiService>();
 
             // Register InMemory Cache
             services.AddMemoryCache();
-            services.AddSingleton<ICacheProvider, InMemoryCacheProvider> ();
+            services.AddSingleton<ICacheProvider, InMemoryCacheProvider>();
 
             return services;
         }

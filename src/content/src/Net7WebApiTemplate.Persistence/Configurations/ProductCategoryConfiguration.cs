@@ -14,7 +14,7 @@ namespace Net7WebApiTemplate.Persistence.Configurations
                 .HasColumnName("CategoryID")
                 .ValueGeneratedOnAdd();
 
-            builder.Property( e=> e.CategoryName)
+            builder.Property(e => e.CategoryName)
                 .HasMaxLength(150)
                 .IsRequired();
 

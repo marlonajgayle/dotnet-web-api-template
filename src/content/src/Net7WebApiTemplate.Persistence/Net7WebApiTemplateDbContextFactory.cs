@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using Net7WebApiTemplate.Application.Shared.Interface;
 
 namespace Net7WebApiTemplate.Persistence
 {
