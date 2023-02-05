@@ -1,15 +1,20 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Net7WebApiTemplate.Application.Shared.Interface;
 using Net7WebApiTemplate.Infrastructure.ApiClients.GitHub;
+using Net7WebApiTemplate.Infrastructure.Auth;
 using Net7WebApiTemplate.Infrastructure.Cache.InMemory;
 using Net7WebApiTemplate.Infrastructure.DataProtection;
 using Net7WebApiTemplate.Infrastructure.Email;
 using Polly;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 
 namespace Net7WebApiTemplate.Infrastructure
 {
@@ -32,8 +37,8 @@ namespace Net7WebApiTemplate.Infrastructure
                 .AddRazorRenderer()
                 .AddSmtpSender(new SmtpClient(emailSenderOptions.Host, emailSenderOptions.Port)
                 {
-                    DeliveryMethod = SmtpDeliveryMethod.Network ,
-                    Credentials = (emailSenderOptions.RequiresAuthentication) ? 
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = (emailSenderOptions.RequiresAuthentication) ?
                     new NetworkCredential(emailSenderOptions.Username, emailSenderOptions.Password) : null,
                     EnableSsl = emailSenderOptions.EnableSsl
                 });
@@ -54,6 +59,56 @@ namespace Net7WebApiTemplate.Infrastructure
             // Register InMemory Cache
             services.AddMemoryCache();
             services.AddSingleton<ICacheProvider, InMemoryCacheProvider>();
+
+            // Configure JWT Authentication and Authorization
+            var jwtOptions = new JwtOptions();
+            configuration.Bind(nameof(JwtOptions), jwtOptions);
+            services.AddSingleton(jwtOptions);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = jwtOptions.ValidateIssuerSigningKey,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.Secret)),
+                ValidateIssuer = jwtOptions.ValidateIssuer,
+                ValidateAudience = jwtOptions.ValidateAudience,
+                ValidAudience = jwtOptions.Audience,
+                RequireExpirationTime = jwtOptions.RequireExpirationTime,
+                ValidateLifetime = jwtOptions.ValidateLifetime,
+                ClockSkew = jwtOptions.Expiration
+            };
+
+            services.AddSingleton(tokenValidationParameters);
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(options =>
+                {
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = tokenValidationParameters;
+                });
+
+            // Register Identity DbContext and Server
+            services.AddDbContext<ApplicationIdentityDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DatabaseConnection")));
+
+            var identityOptionsConfig = new IdentityOptionsConfig();
+            configuration.GetSection(nameof(IdentityOptions)).Bind(identityOptionsConfig);
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = identityOptionsConfig.RequiredLength;
+                options.Password.RequireDigit = identityOptionsConfig.RequiredDigit;
+                options.Password.RequireLowercase = identityOptionsConfig.RequireLowercase;
+                options.Password.RequiredUniqueChars = identityOptionsConfig.RequiredUniqueChars;
+                options.Password.RequireUppercase = identityOptionsConfig.RequireUppercase;
+                options.Lockout.MaxFailedAccessAttempts = identityOptionsConfig.MaxFailedAttempts;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(identityOptionsConfig.LockoutTimeSpanInDays);
+            })
+            .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
+
 
             return services;
         }
