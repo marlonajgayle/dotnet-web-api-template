@@ -7,7 +7,7 @@ namespace Net7WebApiTemplate.Application.Features.Products.Commands.UpdateProduc
         public UpdateProductCommandValidator()
         {
             RuleFor(v => v.Id)
-                .GreaterThan(0). WithMessage("ProductId value is required.");
+                .GreaterThan(0).WithMessage("ProductId value is required.");
 
             RuleFor(v => v.ProductName)
                 .NotEmpty().WithMessage("Product Name field is required.");
