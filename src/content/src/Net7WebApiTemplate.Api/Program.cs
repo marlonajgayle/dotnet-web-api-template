@@ -197,6 +197,8 @@ app.UseIpRateLimiting();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+
 app.UseRouting();
 
 app.UseCors();
