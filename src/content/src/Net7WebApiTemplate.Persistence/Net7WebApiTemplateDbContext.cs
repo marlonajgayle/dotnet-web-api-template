@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Net7WebApiTemplate.Application.Shared.Interface;
 using Net7WebApiTemplate.Domain.Entities;
+using Net7WebApiTemplate.Infrastructure.Auth;
 
 namespace Net7WebApiTemplate.Persistence
 {
-    public class Net7WebApiTemplateDbContext : DbContext, INet7WebApiTemplateDbContext
+    public class Net7WebApiTemplateDbContext : IdentityDbContext<ApplicationUser>, INet7WebApiTemplateDbContext
     {
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Product> Products { get; set; }

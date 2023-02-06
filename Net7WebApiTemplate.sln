@@ -25,6 +25,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net7WebApiTemplate.Persistence", "src\content\src\Net7WebApiTemplate.Persistence\Net7WebApiTemplate.Persistence.csproj", "{81AC5E50-2C4E-4052-B45B-DACC5C11EEA2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{03BD9AA6-6766-4FDB-BCE4-F09209C8555F} = {03BD9AA6-6766-4FDB-BCE4-F09209C8555F}
+		{F1A295EE-D430-4B8E-9E66-19563121BE81} = {F1A295EE-D430-4B8E-9E66-19563121BE81}
 	EndProjectSection
 EndProject
 Global
