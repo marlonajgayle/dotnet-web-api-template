@@ -11,6 +11,7 @@ namespace Net7WebApiTemplate.Persistence
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCatergory> ProductCatergories { get; set; }
+        public DbSet<RefreshToken> RefeshTokens { get; set; }
 
         public Net7WebApiTemplateDbContext(DbContextOptions<Net7WebApiTemplateDbContext> options)
             : base(options)
