@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
 using Net7WebApiTemplate.Application.Shared.Interface;
 using Net7WebApiTemplate.Infrastructure.ApiClients.GitHub;
 using Net7WebApiTemplate.Infrastructure.Auth;
@@ -31,6 +32,7 @@ namespace Net7WebApiTemplate.Infrastructure
             // Register Email Sender and Configurations
             var emailSenderOptions = new EmailSenderOptions();
             configuration.GetSection(nameof(EmailSenderOptions)).Bind(emailSenderOptions);
+
             services.AddScoped<IEmailSender, EmailSenderService>();
 
             services.AddFluentEmail(defaultFromEmail: emailSenderOptions.FromEmail)
@@ -61,6 +63,8 @@ namespace Net7WebApiTemplate.Infrastructure
             services.AddSingleton<ICacheProvider, InMemoryCacheProvider>();
 
             // Configure JWT Authentication and Authorization
+            services.AddTransient<IJwtTokenService, JwtTokenService>();
+
             var jwtOptions = new JwtOptions();
             configuration.Bind(nameof(JwtOptions), jwtOptions);
             services.AddSingleton(jwtOptions);
