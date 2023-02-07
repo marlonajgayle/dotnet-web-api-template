@@ -17,6 +17,7 @@ namespace Net7WebApiTemplate.Persistence.Configurations
                 .HasMaxLength(128)
                 .IsRequired();
 
+            builder.HasIndex(e => e.JwtId);
             builder.Property(e => e.JwtId)
                 .HasMaxLength(128)
                 .IsRequired();
