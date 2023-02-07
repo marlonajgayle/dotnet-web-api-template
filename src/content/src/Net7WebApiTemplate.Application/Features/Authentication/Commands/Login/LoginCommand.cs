@@ -32,9 +32,15 @@ namespace Net7WebApiTemplate.Application.Features.Authentication.Commands.Login
             }
 
             // Generate JWT token response if validation is successful
-            AuthenticationResult response = await _jwtTokenService.GenerateClaimsTokenAsync(request.Email, cancellationToken);
+            var response = await _jwtTokenService.GenerateClaimsTokenAsync(request.Email, cancellationToken);
 
-            return response;
+            return new AuthenticationResult 
+            { 
+                AccessToken = response.AccessToken,
+                TokenType = "Bearer",
+                ExpiresIn = response.ExpiresIn,
+                RefreshToken = response.RefreshToken
+            };
         }
     }
 }
