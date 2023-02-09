@@ -1,15 +1,15 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Marlon A. J. Gayle",
-  "classifications": [ ".NET 7 Web API Template", "Cloud", "Service", "Web" ],
-  "identity": "marlonajgayle.net7.web.template",
-  "name": "NET 7 Web API Template",
+  "classifications": [ "WebAPI", "Cloud", "Service", "Web" ],
+  "identity": "marlonajgayle.net7.webapi.template",
+  "name": ".NET 7 Web API C# Template",
   "shortName": "net7webapi",
   "tags": {
     "language": "C#",
     "type": "solution"
   },
-  "sourceName": "Net77WebApiTemplate",
+  "sourceName": "Net7WebApiTemplate",
   "description": "A project template for creating ASP.NET 7 Web API multi-project solution for Windows, Linux and macOS using DDD and CQRS.",
   "preferNameDirectory": true
 }
