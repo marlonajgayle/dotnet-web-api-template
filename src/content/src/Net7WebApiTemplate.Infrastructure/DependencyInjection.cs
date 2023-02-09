@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
 using Net7WebApiTemplate.Application.Shared.Interface;
 using Net7WebApiTemplate.Infrastructure.ApiClients.GitHub;
 using Net7WebApiTemplate.Infrastructure.Auth;
@@ -31,7 +32,7 @@ namespace Net7WebApiTemplate.Infrastructure
             // Register Email Sender and Configurations
             var emailSenderOptions = new EmailSenderOptions();
             configuration.GetSection(nameof(EmailSenderOptions)).Bind(emailSenderOptions);
-            services.AddScoped<IEmailSender, EmailSenderService>();
+            services.AddSingleton(emailSenderOptions);
 
             services.AddFluentEmail(defaultFromEmail: emailSenderOptions.FromEmail)
                 .AddRazorRenderer()
@@ -42,6 +43,8 @@ namespace Net7WebApiTemplate.Infrastructure
                     new NetworkCredential(emailSenderOptions.Username, emailSenderOptions.Password) : null,
                     EnableSsl = emailSenderOptions.EnableSsl
                 });
+
+            services.AddScoped<IEmailSender, EmailSenderService>();
 
             // Register Http Client
             services.AddHttpClient(name: "GitHub", client =>
@@ -60,7 +63,12 @@ namespace Net7WebApiTemplate.Infrastructure
             services.AddMemoryCache();
             services.AddSingleton<ICacheProvider, InMemoryCacheProvider>();
 
+            // Register Authentication Service
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+
             // Configure JWT Authentication and Authorization
+            services.AddTransient<IJwtTokenService, JwtTokenService>();
+
             var jwtOptions = new JwtOptions();
             configuration.Bind(nameof(JwtOptions), jwtOptions);
             services.AddSingleton(jwtOptions);

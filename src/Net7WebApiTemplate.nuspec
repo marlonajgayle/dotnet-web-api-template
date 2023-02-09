@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Net7WebTemplate</id>
+    <id>net7.webapi.template</id>
     <version>$version$</version>
     <description>
-      This is a multi-project solution dotnet template for creating an enterprise-level Web API 
-      using .NET 7 ASP.NET Core using the Clean Architecture principles and API best practicies.
+      Multi-project solution dotnet template for creating enterprise-level Web APIs 
+      using .NET 7 ASP.NET Core using the Domain Driven Design principles and best practicies.
     </description>
     <authors>Marlon A. J. Gayle</authors>
     <license type="expression">MIT</license>

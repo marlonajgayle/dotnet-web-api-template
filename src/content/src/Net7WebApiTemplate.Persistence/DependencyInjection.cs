@@ -37,7 +37,7 @@ namespace Net7WebApiTemplate.Persistence
             }
 
             services.AddScoped<INet7WebApiTemplateDbContext>(provider =>
-                provider.GetService<Net7WebApiTemplateDbContext>());
+                provider.GetRequiredService<Net7WebApiTemplateDbContext>());
 
             return services;
         }

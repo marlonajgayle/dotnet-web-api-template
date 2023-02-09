@@ -17,9 +17,9 @@ namespace Net7WebApiTemplate.Infrastructure.Cache.InMemory
             _memoryCache.Remove(key);
         }
 
-        public T GetFromCache<T>(string cacheKey) where T : class
+        public T? GetFromCache<T>(string cacheKey) where T : class
         {
-            _memoryCache.TryGetValue(cacheKey, out T cachedResponse);
+            _memoryCache.TryGetValue(cacheKey, out T? cachedResponse);
 
             return cachedResponse as T;
         }
