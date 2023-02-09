@@ -32,8 +32,7 @@ namespace Net7WebApiTemplate.Infrastructure
             // Register Email Sender and Configurations
             var emailSenderOptions = new EmailSenderOptions();
             configuration.GetSection(nameof(EmailSenderOptions)).Bind(emailSenderOptions);
-
-            services.AddScoped<IEmailSender, EmailSenderService>();
+            services.AddSingleton(emailSenderOptions);
 
             services.AddFluentEmail(defaultFromEmail: emailSenderOptions.FromEmail)
                 .AddRazorRenderer()
@@ -44,6 +43,8 @@ namespace Net7WebApiTemplate.Infrastructure
                     new NetworkCredential(emailSenderOptions.Username, emailSenderOptions.Password) : null,
                     EnableSsl = emailSenderOptions.EnableSsl
                 });
+
+            services.AddScoped<IEmailSender, EmailSenderService>();
 
             // Register Http Client
             services.AddHttpClient(name: "GitHub", client =>
@@ -61,6 +62,9 @@ namespace Net7WebApiTemplate.Infrastructure
             // Register InMemory Cache
             services.AddMemoryCache();
             services.AddSingleton<ICacheProvider, InMemoryCacheProvider>();
+
+            // Register Authentication Service
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             // Configure JWT Authentication and Authorization
             services.AddTransient<IJwtTokenService, JwtTokenService>();
