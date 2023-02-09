@@ -1,6 +1,6 @@
 <img align="left" width="116" height="116" src="https://raw.githubusercontent.com/marlonajgayle/Net7WebApiTemplate/develop/src/content/.template.config/icon.png" />
 
-# dotnet core web api template
+# net 7 core web api template
 [![Build](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml)
 [![CodeQL](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml)
 
@@ -28,11 +28,23 @@ To setup the SQL Server database following the instrcutions below:
 2. Run `dotnet ef migrations add Initial --context <ProjectName>DbContext` to add migation with EF Core 
 3. Run `dotnet ef database update Initial` to create application database.
 
+
+## Third Party Libraries
+* Dapper
+* Fluent Email
+* Fluent Validation
+* HashidsCore.NET
+* Mediator.SourceGenerator
+* AspNetCoreRateLimit
+* Polly
+* Serilog
+
+
 ## Contributions
 
 
 ## Credits
-Icon made by [DinosoftLabs](a href="https://www.flaticon.com/free-icons/api) from [www.flaticon.com](https://www.flaticon.com/)
+Icon made by [DinosoftLabs](href="https://www.flaticon.com/free-icons/api) from [www.flaticon.com](https://www.flaticon.com/)
 
 ## Versions
 The [main](https://github.com/marlonajgayle/Net7WebApiTemplate/main) branch is running .NET 7.0
