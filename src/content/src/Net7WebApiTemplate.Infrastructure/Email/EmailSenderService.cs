@@ -36,7 +36,7 @@ namespace Net7WebApiTemplate.Infrastructure.Email
                 return exp;
             }
 
-            IDictionary<string, object> expando = new ExpandoObject();
+            IDictionary<string, object?> expando = new ExpandoObject();
             foreach (var propertyDescriptor in model.GetType().GetTypeInfo().GetProperties())
             {
                 var obj = propertyDescriptor.GetValue(model);
