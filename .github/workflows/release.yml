@@ -19,10 +19,10 @@ jobs:
     runs-on: windows-latest
     steps:
      - name: Checkout
-       uses: actions/checkout@v2
+       uses: actions/checkout@v3
 
      - name: 'Install .NET Core 7 SDK'
-       uses: actions/setup-dotnet@v1
+       uses: actions/setup-dotnet@v3
        with:
          dotnet-version: 7.0.x
 
@@ -39,7 +39,7 @@ jobs:
        run: dotnet pack ${{ env.PROJECT_PATH }} --no-build --no-restore --configuration Release -p:NuspecFile=${{ github.workspace }}\src\Net7WebApiTemplate.nuspec -p:NuspecBasePath=${{ github.workspace }}\src -p:NuspecProperties="version=${{ github.event.release.tag_name }}" -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageReleaseNotes="See https://github.com/marlonajgayle/Net7WebApiTemplate/releases/tag/${{ github.event.release.tag_name }}" --output ${{ env.ARTIFACTS_DIRECTORY }}
 
      - name: 'Archive Nuget Artifact'
-       uses: actions/upload-artifact@v2.2.4
+       uses: actions/upload-artifact@v3
        with:
          name: packages
          path: ${{ env.ARTIFACTS_DIRECTORY }}
@@ -56,7 +56,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: 'Download Artifact'
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: 'packages'
 
@@ -76,7 +76,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: 'Download Artifact'
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: 'packages'
 
