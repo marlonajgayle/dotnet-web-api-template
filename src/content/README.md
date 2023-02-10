@@ -4,7 +4,7 @@
 [![Build](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml)
 [![CodeQL](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml)
 
- modern multi-project .NET template that utilises Domain Driven Design (DDD) and architecture to implement a maintainable enterprise-level API application 
+A modern multi-project .NET template that utilises Domain Driven Design (DDD) and architecture to implement a maintainable enterprise-level API application 
 that provides Api versioning, Fluent email, Fluent validation, JWT authentication, Identity role-based authorization, InMemory caching, IP rate limiting, 
 Mediator, Sirilog and Swagger.
 
