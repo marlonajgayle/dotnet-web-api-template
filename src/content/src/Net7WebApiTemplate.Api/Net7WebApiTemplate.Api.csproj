@@ -9,6 +9,22 @@
   <PropertyGroup>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  <NoWarn>$(NoWarn);1591</NoWarn>
+	  <Authors>Marlon A. J. Gayle</Authors>
+	  <PackageProjectUrl>https://github.com/marlonajgayle/Net7WebApiTemplate</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/marlonajgayle/Net7WebApiTemplate</RepositoryUrl>
+	  <RepositoryType>Git</RepositoryType>
+	  <PackageTags>ASP.NET Core dotnet template net7webapitemplate</PackageTags>
+	  <Description>
+		  A modern multi-project .NET template that utilises Domain Driven Design (DDD) and architecture to implement a maintainable enterprise-level API application
+		  that provides Api versioning, Fluent email, Fluent validation, JWT authentication, Identity role-based authorization, InMemory caching, IP rate limiting,
+		  Mediator, Sirilog and Swagger.
+	  </Description>
+	  <Copyright>Copyright © Marlon A. J. Gayle. All rights Reserved</Copyright>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <IsPackable>true</IsPackable>
+	  <PackageReleaseNotes>https://github.com/marlonajgayle/Net7WebApiTemplate/releases</PackageReleaseNotes>
+	  <NuspecFile>..\..\..\Net7WebApiTemplate.nuspec</NuspecFile>
   </PropertyGroup>
 	
   <ItemGroup>
