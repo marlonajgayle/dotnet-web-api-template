@@ -11,7 +11,7 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   # Build Variables
   ARTIFACTS_DIRECTORY: ${{ github.workspace }}\artifacts
-  PROJECT_PATH: ${{ github.workspace }}\src\Content\src\Net7WebApiTemplate.Api\Net7WebApiTemplate.Api.csproj
+  PROJECT_PATH: ${{ github.workspace }}\src\content\src\Net7WebApiTemplate.Api\Net7WebApiTemplate.Api.csproj
 
 jobs:
   build:
