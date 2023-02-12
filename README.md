@@ -29,11 +29,11 @@ You will need the following tools:
 1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download). 
 2. Run `dotnet new --install Net.WebApi.Template::1.0.0-beta.3` to install the project template
 
-### Using Visual Studio:
+#### Using Visual Studio:
 Select WebAPI from the project type drop down.
 Select the .NET Web API Solution template you want to install and follow the instructions.
 
-### Using dotnet CLI:
+#### Using dotnet CLI:
 Run `dotnet new net7webapi` along with any other custom options to create a project from the template.
 
 
