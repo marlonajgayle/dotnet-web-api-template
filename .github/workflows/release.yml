@@ -72,7 +72,7 @@ jobs:
     if: github.event_name == 'release'
     environment:
       name: 'Nuget Packages'
-      url: https://www.nuget.org/packages/Net7WebApiTemplate/
+      url: https://www.nuget.org/packages/Net7.WebApi.Template/
     runs-on: windows-latest
     steps:
     - name: 'Download Artifact'
