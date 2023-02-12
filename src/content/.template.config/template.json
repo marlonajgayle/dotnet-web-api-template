@@ -2,8 +2,8 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Marlon A. J. Gayle",
   "classifications": [ "WebAPI", "Cloud", "Service", "Web" ],
-  "identity": "marlonajgayle.net7.webapi.template",
-  "name": ".NET 7 Web API C# Template",
+  "identity": "dotnet.webapi.template",
+  "name": ".NET Web API Solution Template",
   "shortName": "net7webapi",
   "tags": {
     "language": "C#",
