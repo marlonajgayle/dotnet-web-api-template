@@ -1,12 +1,14 @@
 <img align="left" width="116" height="116" src="https://raw.githubusercontent.com/marlonajgayle/Net7WebApiTemplate/develop/src/content/.template.config/icon.png" />
 
-# net 7 core web api template
+# .NET Web API Solution Template
 [![Build](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml)
 [![CodeQL](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml)
+[![Boilerplate.Templates NuGet Package](https://img.shields.io/nuget/v/Net.WebApi.Template.svg)](https://www.nuget.org/packages/Net.WebApi.Template)
+[![Boilerplate.Templates NuGet Package Downloads](https://img.shields.io/nuget/dt/Net.WebApi.Template)](https://www.nuget.org/packages/Net.WebApi.Template)
 
-A modern multi-project .NET template that utilises Domain Driven Design (DDD) and architecture to implement a maintainable enterprise-level API application 
-that provides Api versioning, Fluent email, Fluent validation, JWT authentication, Identity role-based authorization, InMemory caching, IP rate limiting, 
-Mediator, Sirilog and Swagger.
+A modern multi-project.NET project template that implements a maintainable enterprise-level API application with
+Api versioning, Fluent email, Fluent validation, JWT authentication, Identity role-based authorization, InMemory caching, 
+IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven Design (DDD) and architecture.
 
 
 ## Table of Contents
@@ -22,9 +24,22 @@ You will need the following tools:
 * [.NET Core SDK 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
 
 
+## Instructions
+### Installation:
+1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download). 
+2. Run `dotnet new --install Net.WebApi.Template::1.0.0-beta.3` to install the project template
+
+### Using Visual Studio:
+Select WebAPI from the project type drop down.
+Select the .NET Web API Solution template you want to install and follow the instructions.
+
+### Using dotnet CLI:
+Run `dotnet new net7webapi` along with any other custom options to create a project from the template.
+
+
 ### Database Setup
-To setup the SQL Server database following the instrcutions below:
-1. Reveiw the connection string in appsettings.Local.json and update the database name.
+To setup the SQL Server database following the instructions below:
+1. Reveiw the connection string in appsettings.Development.json and update the database name.
 2. Run `dotnet ef migrations add Initial --context <ProjectName>DbContext` to add migation with EF Core 
 3. Run `dotnet ef database update Initial` to create application database.
 
