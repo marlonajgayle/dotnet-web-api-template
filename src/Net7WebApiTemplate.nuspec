@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Net7.WebApi.Template</id>
+    <id>Net.WebApi.Template</id>
     <version>$version$</version>
     <description>
       Multi-project solution dotnet template for creating enterprise-level Web APIs 
-      using .NET 7 ASP.NET Core using the Domain Driven Design principles and best practicies.
+      using .NET 7 ASP.NET Core using the Domain Driven Design (DDD) principles and best practicies.
     </description>
     <authors>Marlon A. J. Gayle</authors>
     <license type="expression">MIT</license>
@@ -13,7 +13,7 @@
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
-    <tags>c-sharp dotnet core template API</tags>
+    <tags>csharp dotnetcore project template webapi dotnet-template swagger</tags>
   </metadata>
   <files>
     <file src="content\**\*.*" exclude="content\**\bin\**\*.*;content\**\obj\**\*.*;" target="content" />
