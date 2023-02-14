@@ -4,12 +4,6 @@
     <id>Net.WebApi.Template</id>
     <version>$version$</version>
     <description>
-		# .NET Web API Solution Template
-		[![Build](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml)
-		[![CodeQL](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml)
-		[![Boilerplate.Templates NuGet Package](https://img.shields.io/nuget/v/Net.WebApi.Template.svg)](https://www.nuget.org/packages/Net.WebApi.Template)
-		[![Boilerplate.Templates NuGet Package Downloads](https://img.shields.io/nuget/dt/Net.WebApi.Template)](https://www.nuget.org/packages/Net.WebApi.Template)
-
 		A modern multi-project.NET project template that implements a maintainable enterprise-level API application with
 		Api versioning, Fluent email, Fluent validation, JWT authentication, Identity role-based authorization, InMemory caching,
 		IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven Design (DDD) and architecture.

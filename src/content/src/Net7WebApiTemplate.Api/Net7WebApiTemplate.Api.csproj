@@ -25,7 +25,15 @@
 	  <IsPackable>true</IsPackable>
 	  <PackageReleaseNotes>https://github.com/marlonajgayle/Net7WebApiTemplate/releases</PackageReleaseNotes>
 	  <NuspecFile>..\..\..\Net7WebApiTemplate.nuspec</NuspecFile>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 	
   <ItemGroup>
     <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />

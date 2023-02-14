@@ -1,4 +1,4 @@
-<img align="left" width="116" height="116" src="https://raw.githubusercontent.com/marlonajgayle/Net7WebApiTemplate/develop/src/content/.template.config/icon.png" />
++<img align="left" width="116" height="116" src="https://raw.githubusercontent.com/marlonajgayle/Net7WebApiTemplate/develop/src/content/.template.config/icon.png" />
 
 # dotnet core web api template
 [![Build](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml)
