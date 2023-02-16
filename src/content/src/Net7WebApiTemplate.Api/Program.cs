@@ -7,6 +7,7 @@ using Net7WebApiTemplate.Api.Filters;
 using Net7WebApiTemplate.Api.Services;
 using Net7WebApiTemplate.Api.Swagger;
 using Net7WebApiTemplate.Application;
+using Net7WebApiTemplate.Application.Shared.Interface;
 using Net7WebApiTemplate.Infrastructure;
 using Net7WebApiTemplate.Persistence;
 using Serilog;
@@ -66,6 +67,12 @@ builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounte
 // configuration (resolvers, counter key builders)
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+
+// client IP resolvers use it
+builder.Services.AddHttpContextAccessor();
+
+// Register Current User Service
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 // Add library project reference
 builder.Services.AddApplication();
