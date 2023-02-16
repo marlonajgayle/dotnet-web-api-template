@@ -1,6 +1,8 @@
 ﻿using Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Net7WebApiTemplate.Api.Endpoints.Faqs;
+using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
 using Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs;
 
@@ -21,20 +23,21 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Login(FaqRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            var query = new GetAllFaqsQuery()
+            var command = new LoginCommand()
             {
-                SearchTerm = request.SearchTerm,
-                Offset = request.Offset,
-                Limit = request.Limit,
+                Email = request.Email,
+                Password = request.Password
             };
-            var result = await _mediator.Send(query);
+
+            var result = await _mediator.Send(command);
 
             return Ok(result);
         }
 
         [HttpGet]
+        [Authorize]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/refresh")]
         [ProducesResponseType(StatusCodes.Status200OK)]
