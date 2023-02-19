@@ -1,10 +1,8 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Net7WebApiTemplate.Api.Endpoints.Faqs;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
-using Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Auth
 {

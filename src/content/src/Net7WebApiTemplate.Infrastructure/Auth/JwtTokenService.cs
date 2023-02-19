@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Net7WebApiTemplate.Application.Features.Authentication;
 using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
 using Net7WebApiTemplate.Application.Features.Authentication.Models;
 using Net7WebApiTemplate.Application.Shared.Interface;
@@ -17,7 +16,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
     {
         private readonly JwtOptions _jwtOptions;
         private readonly INet7WebApiTemplateDbContext _dbContext;
-        private readonly UserManager<ApplicationUser> _userManager;        
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly TokenValidationParameters _tokenValidationParameters;
 
         public JwtTokenService(JwtOptions jwtOptions, INet7WebApiTemplateDbContext dbContext,
@@ -40,7 +39,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
                 Subject = new ClaimsIdentity(new[]
                 {
 
-                    new Claim(ClaimTypes.NameIdentifier, user.Id), 
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(JwtRegisteredClaimNames.Email, email),
                     new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString()),
                     new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.UtcNow.AddMinutes(_jwtOptions.Expiration.TotalMinutes)).ToUnixTimeSeconds().ToString()),
@@ -115,17 +114,17 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             var random = new Random();
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-            return new string (Enumerable.Repeat(chars, 32)
+            return new string(Enumerable.Repeat(chars, 32)
                 .Select(s => s[random.Next(chars.Length)]).ToArray());
         }
 
-        
+
 
         public async Task<TokenResult> RefreshTokenAsync(string token, string refreshToken, CancellationToken cancellationToken)
         {
             var validatedToken = await GetPrincipFromTokenAsync(token);
 
-            if (validatedToken != null) 
+            if (validatedToken != null)
             {
                 return new TokenResult { Succeeded = false, Error = "Invalid token" };
             }
