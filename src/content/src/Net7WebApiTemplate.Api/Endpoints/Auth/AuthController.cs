@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
+using Net7WebApiTemplate.Application.Features.Authentication.Commands.RegisterUser;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Auth
 {
@@ -50,6 +51,24 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             var result = await _mediator.Send(command);
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Register(RegisterRequest request)
+        {
+            var command = new RegisterUserCommand
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            await _mediator.Send(command);
+            return Ok();
         }
     }
 }
