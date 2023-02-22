@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
 using Net7WebApiTemplate.Application.Features.Products.Interfaces;
 using Net7WebApiTemplate.Domain.Entities;
 
@@ -7,10 +6,11 @@ namespace Net7WebApiTemplate.Persistence.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly DapperDbContext _dbContext;
-        public ProductRepository(DapperDbContext dbContext)
+        private readonly ISqlConnectionFactory _connectionFactory;
+
+        public ProductRepository(ISqlConnectionFactory connectionFactory)
         {
-            _dbContext = dbContext;
+            _connectionFactory = connectionFactory;
         }
 
         public async Task<Product?> GetById(long id)
@@ -18,10 +18,10 @@ namespace Net7WebApiTemplate.Persistence.Repositories
             var sql = @"SELECT ProductID, ProductName, ProductDescription, ProductPrice
                         FROM Products p
                         INNER JOIN ProductCategories pc ON p.CategoryID
-                        WHERE ProductID = @ProductId";
+                        WHERE ProductID = @ProductId"
+            ;
 
-            await using SqlConnection sqlconnection = _dbContext.CreateConnection();
-
+            using var sqlconnection = _connectionFactory.CreateConnection();
             var entity = await sqlconnection.QueryAsync<Product, ProductCatergory, Product>
                 (sql, (product, productCategory) =>
                 {
@@ -40,7 +40,7 @@ namespace Net7WebApiTemplate.Persistence.Repositories
 
         public async Task Update(Product product)
         {
-            await using SqlConnection sqlconnection = _dbContext.CreateConnection();
+            using var sqlconnection = _connectionFactory.CreateConnection();
             await sqlconnection.ExecuteAsync(
                 @"UPDATE Products
                  SET @ProductName, @ProductDescription, @ProductPrice
