@@ -32,6 +32,11 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
         {
             var user = await _userManager.FindByEmailAsync(email);
 
+            if (user == null) 
+            {
+                return new TokenResult { Succeeded = false, Error = "User provided does not exist." };
+            }
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -100,8 +105,6 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             }
         }
 
-
-
         private static bool IsJwtWithValidSecurityAlgorithm(SecurityToken validatedToken)
         {
             return (validatedToken is JwtSecurityToken jwtSecurityToken) &&
@@ -124,7 +127,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
         {
             var validatedToken = await GetPrincipFromTokenAsync(token);
 
-            if (validatedToken != null)
+            if (validatedToken == null)
             {
                 return new TokenResult { Succeeded = false, Error = "Invalid token" };
             }
