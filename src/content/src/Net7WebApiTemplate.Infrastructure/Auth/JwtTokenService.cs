@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
@@ -32,7 +31,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
         {
             var user = await _userManager.FindByEmailAsync(email);
 
-            if (user == null) 
+            if (user == null)
             {
                 return new TokenResult { Succeeded = false, Error = "User provided does not exist." };
             }

@@ -74,7 +74,7 @@ namespace Net7WebApiTemplate.Api.Filters
         }
 
         private void HandleBadRequestException(ExceptionContext context)
-        { 
+        {
             var exception = context.Exception as BadRequestException;
 
             var details = new ProblemDetails()
