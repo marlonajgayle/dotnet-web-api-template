@@ -14,7 +14,7 @@ namespace Net7WebApiTemplate.Api.Filters
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
-
+                { typeof(BadRequestException), HandleBadRequestException },
                 { typeof(NotFoundException), HandleNotFoundException },
                 { typeof(UnauthorizedException), HandleUnauthorizedException },
                 { typeof(ValidationException), HandleValidationException }
@@ -70,6 +70,21 @@ namespace Net7WebApiTemplate.Api.Filters
 
             context.Result = new BadRequestObjectResult(details);
 
+            context.ExceptionHandled = true;
+        }
+
+        private void HandleBadRequestException(ExceptionContext context)
+        { 
+            var exception = context.Exception as BadRequestException;
+
+            var details = new ProblemDetails()
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Title = "An error occurred while processing your request.",
+                Detail = exception.Message
+            };
+
+            context.Result = new BadRequestObjectResult(details);
             context.ExceptionHandled = true;
         }
 
