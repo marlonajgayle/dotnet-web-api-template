@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
 using Net7WebApiTemplate.Application.Features.Authentication.Models;
+using Net7WebApiTemplate.Application.Shared.Exceptions;
 
 namespace Net7WebApiTemplate.Infrastructure.Auth
 {
@@ -17,6 +18,23 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
+        }
+
+        public async Task CreateRoleAsync(string roleName)
+        {
+            var roleExist = await _roleManager.RoleExistsAsync(roleName);
+
+            if (roleExist)
+            {
+                throw new BadRequestException($"Role name '{roleName}' already exists.");
+            }
+
+            var roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
+
+            if (!roleResult.Succeeded)
+            {
+                throw new BadRequestException($"Failed to create role '{roleName}'.");
+            }
         }
 
         public async Task<IEnumerable<string?>> GetRolesAsync()
