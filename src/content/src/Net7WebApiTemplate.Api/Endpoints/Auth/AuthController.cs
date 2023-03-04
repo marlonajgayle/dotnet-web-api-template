@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RegisterUser;
+using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetAllRoles;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Auth
 {
@@ -69,6 +70,18 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
 
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpGet]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/roles")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllRoles()
+        {
+            var query = new GetAllRolesQuery();
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
         }
     }
 }
