@@ -21,7 +21,7 @@ namespace Net7WebApiTemplate.Application.Features.Authentication.Queries.GetAllR
             var roles = await _authenticationService.GetRolesAsync();
 
             if (roles == null)
-            { 
+            {
                 return Enumerable.Empty<string>();
             }
 
