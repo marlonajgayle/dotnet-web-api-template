@@ -1,6 +1,8 @@
-﻿using Mediator;
+﻿using FluentEmail.Core;
+using Mediator;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddUserToRole;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.CreateRole;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
@@ -93,6 +95,22 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         {
             var command = new CreateRoleCommand
             {
+                RoleName = roleName.Trim()
+            };
+
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpPost]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/roles/users")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> AddUserToRole( string email, string roleName)
+        {
+            var command = new AddUserToRoleCommand
+            {
+                Email = email.Trim(),
                 RoleName = roleName.Trim()
             };
 
