@@ -20,6 +20,30 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             _roleManager = roleManager;
         }
 
+        public async Task AddUserToRoleAsync(string email, string roleName)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if(user == null)
+            {
+                throw new BadRequestException($"User '{email} was not found.");
+            }
+
+            var roleExist = await _roleManager.RoleExistsAsync(roleName);
+
+            if(!roleExist) 
+            {
+                throw new BadRequestException($"Role '{roleName}' does not exist.");
+            }
+
+            var result = await _userManager.AddToRoleAsync(user, roleName);
+
+            if(!result.Succeeded) 
+            {
+                throw new BadRequestException($"Failed to add role: {roleName} to user {email}.");
+            }
+        }
+
         public async Task CreateRoleAsync(string roleName)
         {
             var roleExist = await _roleManager.RoleExistsAsync(roleName);
