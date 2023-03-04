@@ -1,6 +1,7 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Net7WebApiTemplate.Application.Features.Authentication.Commands.CreateRole;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RegisterUser;
@@ -82,6 +83,21 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             var result = await _mediator.Send(query);
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/roles")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> CreateRole([FromBody] string roleName)
+        {
+            var command = new CreateRoleCommand
+            {
+                RoleName = roleName.Trim()
+            };
+
+            await _mediator.Send(command);
+            return Ok();
         }
     }
 }
