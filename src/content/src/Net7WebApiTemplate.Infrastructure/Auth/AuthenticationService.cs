@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
 using Net7WebApiTemplate.Application.Features.Authentication.Models;
 
@@ -8,12 +9,21 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AuthenticationService(SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
+        }
+
+        public async Task<IEnumerable<string?>> GetRolesAsync()
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
+
+            return roles.Select(role => role.Name).ToList();
         }
 
         public async Task<Result> PasswordSignInAsync(string email, string password, bool LockoutOnFailure)
