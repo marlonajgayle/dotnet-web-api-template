@@ -1,5 +1,4 @@
-﻿using FluentEmail.Core;
-using Mediator;
+﻿using Mediator;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddUserToRole;
@@ -7,7 +6,9 @@ using Net7WebApiTemplate.Application.Features.Authentication.Commands.CreateRole
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RegisterUser;
+using Net7WebApiTemplate.Application.Features.Authentication.Commands.RemoveUserFromRole;
 using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetAllRoles;
+using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetUserRoles;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Auth
 {
@@ -106,9 +107,40 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/roles/users")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> AddUserToRole( string email, string roleName)
+        public async Task<IActionResult> AddUserToRole(string email, string roleName)
         {
             var command = new AddUserToRoleCommand
+            {
+                Email = email.Trim(),
+                RoleName = roleName.Trim()
+            };
+
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpGet]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/roles/users")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUserRoles(string email)
+        {
+            var query = new GetUserRolesQuery
+            {
+                Email = email.Trim()
+            };
+
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/roles/users")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> RemoveUserFromRole(string email, string roleName)
+        {
+            var command = new RemoveUserFromRoleCommand
             {
                 Email = email.Trim(),
                 RoleName = roleName.Trim()
