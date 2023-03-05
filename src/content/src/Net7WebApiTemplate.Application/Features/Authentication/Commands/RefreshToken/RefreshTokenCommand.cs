@@ -23,13 +23,13 @@ namespace Net7WebApiTemplate.Application.Features.Authentication.Commands.Refres
         {
             var result = await _jwtTokenService.RefreshTokenAsync(request.AccessToken, request.RefreshToken, cancellationToken);
 
-            if(!result.Succeeded) 
+            if (!result.Succeeded)
             {
                 throw new UnauthorizedException(result.Error);
             }
 
-            return new AuthenticationResult 
-            { 
+            return new AuthenticationResult
+            {
                 AccessToken = result.AccessToken,
                 TokenType = "Bearer",
                 ExpiresIn = result.ExpiresIn,

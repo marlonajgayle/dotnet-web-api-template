@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Net7WebApiTemplate.Application.Features.Faqs.Interfaces;
 using Net7WebApiTemplate.Application.Features.Products.Interfaces;
 using Net7WebApiTemplate.Application.Shared.Interface;
 using Net7WebApiTemplate.Persistence.Repositories;
@@ -19,8 +20,9 @@ namespace Net7WebApiTemplate.Persistence
                 .AddDbContextCheck<Net7WebApiTemplateDbContext>(name: "Application Database");
 
             // Register Dapper DbContext and Repositories
-            services.AddSingleton<DapperDbContext>();
+            services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IFaqRepository, FaqRepository>();
 
             if (environment.IsProduction())
             {
