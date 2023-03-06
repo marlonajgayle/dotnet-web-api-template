@@ -15,6 +15,6 @@ namespace Net7WebApiTemplate.Application.Features.Authentication.Interfaces
         Task<Result> PasswordSignInAsync(string email, string password, bool LockoutOnFailure);
         Task<Result> RegisterUserAsync(AppUser user, string password);
         Task RemoveUserFromRoleAsync(string email, string roleName);
-        
+
     }
 }

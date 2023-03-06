@@ -123,7 +123,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
                 var role = await _roleManager.FindByNameAsync(userRole);
 
                 if (role != null)
-                { 
+                {
                     claims.Add(new Claim(ClaimTypes.Role, userRole));
                     var roleClaims = await _roleManager.GetClaimsAsync(role);
                     foreach (var roleClaim in roleClaims)

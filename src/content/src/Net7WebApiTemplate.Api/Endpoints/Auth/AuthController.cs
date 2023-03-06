@@ -174,7 +174,7 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         public async Task<IActionResult> AddClaimToUser(string email, string claimName, string claimValue)
         {
             var command = new AddClaimToUserCommand
-            { 
+            {
                 Email = email.Trim(),
                 ClaimName = claimName.Trim(),
                 ClaimValue = claimValue.Trim()
