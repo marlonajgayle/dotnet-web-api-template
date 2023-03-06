@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
 using Net7WebApiTemplate.Application.Features.Authentication.Models;
 using Net7WebApiTemplate.Application.Shared.Exceptions;
+using System.Security.Claims;
 
 namespace Net7WebApiTemplate.Infrastructure.Auth
 {
@@ -18,6 +19,24 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
+        }
+
+        public async Task AddClaimToUser(string email, string claimName, string claimValue)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                throw new BadRequestException($"User '{email} was not found.");
+            }
+
+            var result = await _userManager.AddClaimAsync(user, new Claim(claimName, claimValue));
+
+            if (!result.Succeeded)
+            {
+                throw new BadRequestException($"Failed to add claim '{claimName}:{claimValue}' to user '{email}.");
+            }
+
         }
 
         public async Task AddUserToRoleAsync(string email, string roleName)
@@ -79,6 +98,20 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             var roles = await _roleManager.Roles.ToListAsync();
 
             return roles.Select(role => role.Name).ToList();
+        }
+
+        public async Task<IList<Claim>> GetUserClaimsAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                throw new NotFoundException($"user '{email}' was not found.");
+            }
+
+            var claims = await _userManager.GetClaimsAsync(user);
+
+            return claims;
         }
 
         public async Task<IList<string>> GetUserRolesAsync(string email)
