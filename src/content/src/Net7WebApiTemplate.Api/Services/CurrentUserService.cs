@@ -15,7 +15,7 @@ namespace Net7WebApiTemplate.Api.Services
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
             UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
-            Email = httpContextAccessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Email) ?? "";
+            Email = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email) ?? "";
             IpAddress = httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress?.ToString() ?? "";
             IsAuthenticated = UserId != null;
         }
