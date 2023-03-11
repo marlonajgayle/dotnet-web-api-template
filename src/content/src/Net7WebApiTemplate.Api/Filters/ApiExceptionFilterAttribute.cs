@@ -7,26 +7,32 @@ namespace Net7WebApiTemplate.Api.Filters
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
         private readonly IDictionary<Type, Action<ExceptionContext>> _exceptionHandlers;
+        private readonly ILogger<ApiExceptionFilterAttribute> _logger;
 
 
-        public ApiExceptionFilterAttribute()
+        public ApiExceptionFilterAttribute(ILogger<ApiExceptionFilterAttribute> logger)
         {
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
                 { typeof(BadRequestException), HandleBadRequestException },
+                { typeof(ForbiddenException), HandleForbiddenException },
                 { typeof(NotFoundException), HandleNotFoundException },
                 { typeof(UnauthorizedException), HandleUnauthorizedException },
                 { typeof(ValidationException), HandleValidationException }
 
             };
+
+            _logger = logger;
         }
 
         public override void OnException(ExceptionContext context)
         {
             HandleException(context);
-
             base.OnException(context);
+
+            // log the exception
+            _logger.LogError("An exception occurred while executing request: {ex}", context.Exception);
         }
 
         private void HandleException(ExceptionContext context)
@@ -57,7 +63,6 @@ namespace Net7WebApiTemplate.Api.Filters
             };
 
             context.Result = new BadRequestObjectResult(details);
-
             context.ExceptionHandled = true;
         }
 
@@ -69,7 +74,6 @@ namespace Net7WebApiTemplate.Api.Filters
             };
 
             context.Result = new BadRequestObjectResult(details);
-
             context.ExceptionHandled = true;
         }
 
@@ -81,10 +85,29 @@ namespace Net7WebApiTemplate.Api.Filters
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
                 Title = "An error occurred while processing your request.",
-                Detail = exception.Message
+                Detail = exception?.Message
             };
 
             context.Result = new BadRequestObjectResult(details);
+            context.ExceptionHandled = true;
+        }
+
+        private void HandleForbiddenException(ExceptionContext context)
+        {
+            var exception = context.Exception as ForbiddenException;
+
+            var details = new ProblemDetails()
+            {
+                Type = "https://www.rfc-editor.org/rfc/rfc7231#section-6.5.3",
+                Title = "Forbidden",
+                Detail = exception?.Message
+            };
+
+            context.Result = new ObjectResult(details)
+            {
+                StatusCode = StatusCodes.Status403Forbidden
+            };
+
             context.ExceptionHandled = true;
         }
 
@@ -96,11 +119,10 @@ namespace Net7WebApiTemplate.Api.Filters
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
                 Title = "The specified resource was not found.",
-                Detail = exception.Message
+                Detail = exception?.Message
             };
 
             context.Result = new NotFoundObjectResult(details);
-
             context.ExceptionHandled = true;
         }
 
@@ -112,11 +134,10 @@ namespace Net7WebApiTemplate.Api.Filters
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
                 Title = "Unauthorized",
-                Detail = exception.Message
+                Detail = exception?.Message
             };
 
-            context.Result = new NotFoundObjectResult(details);
-
+            context.Result = new UnauthorizedObjectResult(details);
             context.ExceptionHandled = true;
         }
 
@@ -133,6 +154,7 @@ namespace Net7WebApiTemplate.Api.Filters
             {
                 StatusCode = StatusCodes.Status500InternalServerError
             };
+
             Console.WriteLine(context.Exception.Message);
             context.ExceptionHandled = true;
         }
