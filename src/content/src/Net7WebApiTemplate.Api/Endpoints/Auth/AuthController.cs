@@ -1,6 +1,8 @@
 ﻿using Mediator;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddClaimToUser;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddUserToRole;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.CreateRole;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
@@ -8,6 +10,7 @@ using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshTok
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RegisterUser;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.RemoveUserFromRole;
 using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetAllRoles;
+using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetUserClaims;
 using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetUserRoles;
 
 namespace Net7WebApiTemplate.Api.Endpoints.Auth
@@ -31,8 +34,8 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         {
             var command = new LoginCommand()
             {
-                Email = request.Email,
-                Password = request.Password
+                Email = request.Email.Trim(),
+                Password = request.Password.Trim()
             };
 
             var result = await _mediator.Send(command);
@@ -41,7 +44,7 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize( AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/refresh")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -49,8 +52,8 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         {
             var command = new RefreshTokenCommand()
             {
-                AccessToken = request.AccessToken,
-                RefreshToken = request.RefreshToken
+                AccessToken = request.AccessToken.Trim(),
+                RefreshToken = request.RefreshToken.Trim()
             };
 
             var result = await _mediator.Send(command);
@@ -66,10 +69,10 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         {
             var command = new RegisterUserCommand
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                Password = request.Password
+                FirstName = request.FirstName.Trim(),
+                LastName = request.LastName.Trim(),
+                Email = request.Email.Trim(),
+                Password = request.Password.Trim()
             };
 
             await _mediator.Send(command);
@@ -144,6 +147,38 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             {
                 Email = email.Trim(),
                 RoleName = roleName.Trim()
+            };
+
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpGet]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/claims/users")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUserClaims(string email)
+        {
+            var query = new GetUserClaimsQuery
+            {
+                Email = email.Trim()
+            };
+
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [ApiVersion("1.0")]
+        [Route("api/v{version:apiVersion}/auth/claims/users")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> AddClaimToUser(string email, string claimName, string claimValue)
+        {
+            var command = new AddClaimToUserCommand
+            {
+                Email = email.Trim(),
+                ClaimName = claimName.Trim(),
+                ClaimValue = claimValue.Trim()
             };
 
             await _mediator.Send(command);

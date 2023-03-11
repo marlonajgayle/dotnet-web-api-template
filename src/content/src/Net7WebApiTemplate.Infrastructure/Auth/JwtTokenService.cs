@@ -105,7 +105,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Email, user?.Email ?? string.Empty),
                 new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.UtcNow.AddMinutes(_jwtOptions.Expiration.TotalMinutes)).ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -123,7 +123,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
                 var role = await _roleManager.FindByNameAsync(userRole);
 
                 if (role != null)
-                { 
+                {
                     claims.Add(new Claim(ClaimTypes.Role, userRole));
                     var roleClaims = await _roleManager.GetClaimsAsync(role);
                     foreach (var roleClaim in roleClaims)

@@ -113,10 +113,10 @@ builder.Services.AddOptions<SwaggerGenOptions>()
 
         var security = new Dictionary<string, IEnumerable<string>>
         {
-            {"Beaer", Array.Empty<string>()}
+            {"Bearer", Array.Empty<string>()}
         };
 
-        swagger.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+        swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             Description = "JWT authorization header using the Bearer scheme.",
             Name = "Authorization",
