@@ -1,4 +1,5 @@
 ﻿using Mediator;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddClaimToUser;
@@ -43,7 +44,7 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize( AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/refresh")]
         [ProducesResponseType(StatusCodes.Status200OK)]
