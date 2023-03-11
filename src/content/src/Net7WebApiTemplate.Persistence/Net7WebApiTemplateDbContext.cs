@@ -9,7 +9,7 @@ namespace Net7WebApiTemplate.Persistence
 {
     public class Net7WebApiTemplateDbContext : IdentityDbContext<ApplicationUser>, INet7WebApiTemplateDbContext
     {
-        private readonly ICurrentUserService _currentUserService;
+        private readonly ICurrentUserService? _currentUserService;
 
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -36,11 +36,11 @@ namespace Net7WebApiTemplate.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = _currentUserService.UserId;
+                        entry.Entity.CreatedBy = _currentUserService?.UserId ?? string.Empty;
                         entry.Entity.CreatedOn = DateTime.UtcNow;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
+                        entry.Entity.LastModifiedBy = _currentUserService?.UserId ?? string.Empty;
                         entry.Entity.LastModifiedOn = DateTime.UtcNow;
                         break;
                 }
