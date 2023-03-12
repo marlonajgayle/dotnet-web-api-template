@@ -20,7 +20,7 @@ namespace Net7WebApiTemplate.Api.Endpoints.Faq
         ///  Retrieves all FAQ information.
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/faqs")]
         [ProducesResponseType(StatusCodes.Status200OK)]
