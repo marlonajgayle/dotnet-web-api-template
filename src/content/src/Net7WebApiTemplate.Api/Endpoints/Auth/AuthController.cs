@@ -44,7 +44,7 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
         }
 
         [HttpGet]
-        [Authorize( AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/refresh")]
         [ProducesResponseType(StatusCodes.Status200OK)]
