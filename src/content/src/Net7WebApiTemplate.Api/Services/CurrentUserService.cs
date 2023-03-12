@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.JsonWebTokens;
-using Net7WebApiTemplate.Application.Shared.Interface;
+﻿using Net7WebApiTemplate.Application.Shared.Interface;
 using System.Security.Claims;
 
 namespace Net7WebApiTemplate.Api.Services
