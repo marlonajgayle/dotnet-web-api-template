@@ -1,6 +1,4 @@
 ﻿using Mediator;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddClaimToUser;
 using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddUserToRole;
@@ -26,6 +24,11 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             _mediator = mediator;
         }
 
+        /// <summary>
+        ///  Authenticate user's login credentials
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/login")]
@@ -43,8 +46,12 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok(result);
         }
 
-        [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        /// <summary>
+        ///  refresh JWT when expired.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/refresh")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -61,6 +68,11 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok(result);
         }
 
+        /// <summary>
+        /// Register user.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/register")]
@@ -79,6 +91,10 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok();
         }
 
+        /// <summary>
+        /// Get all user roles
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/roles")]
@@ -91,6 +107,11 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok(result);
         }
 
+        /// <summary>
+        /// Create user role
+        /// </summary>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         [HttpPost]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/roles")]
@@ -106,6 +127,13 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok();
         }
 
+
+        /// <summary>
+        /// Add role to user
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         [HttpPost]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/roles/users")]
@@ -122,6 +150,11 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok();
         }
 
+        /// <summary>
+        /// Get user's roles 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpGet]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/roles/users")]
@@ -137,6 +170,12 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok(result);
         }
 
+        /// <summary>
+        /// Remove role from user.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         [HttpDelete]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/roles/users")]
@@ -153,6 +192,11 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok();
         }
 
+        /// <summary>
+        /// Get user's claims
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpGet]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/claims/users")]
@@ -168,6 +212,13 @@ namespace Net7WebApiTemplate.Api.Endpoints.Auth
             return Ok(result);
         }
 
+        /// <summary>
+        /// Add claim to user.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="claimName"></param>
+        /// <param name="claimValue"></param>
+        /// <returns></returns>
         [HttpPost]
         [ApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/auth/claims/users")]
