@@ -7,14 +7,14 @@
 
         public PaginationRequest()
         {
-            Offset = 0;
-            Limit = 0;
+            Offset = 1;
+            Limit = 25;
         }
 
         public PaginationRequest(int offset, int limit)
         {
-            Offset = offset;
-            Limit = limit;
+            Offset = offset < 1 ? 1 : offset;
+            Limit = limit > 50 ? 50 : limit;
         }
     }
 }
