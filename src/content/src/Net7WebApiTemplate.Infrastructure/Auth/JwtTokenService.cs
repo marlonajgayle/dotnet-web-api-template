@@ -152,8 +152,6 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
                 .Select(s => s[random.Next(chars.Length)]).ToArray());
         }
 
-
-
         public async Task<TokenResult> RefreshTokenAsync(string token, string refreshToken, CancellationToken cancellationToken)
         {
             var validatedToken = await GetPrincipFromTokenAsync(token);
@@ -164,7 +162,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
             }
 
             var expirationDate = long.Parse(validatedToken.Claims.Single(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
-            var expirationDateTimeUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            var expirationDateTimeUtc = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                 .AddSeconds(expirationDate);
 
             if (expirationDateTimeUtc > DateTime.UtcNow)
@@ -180,7 +178,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
                 return new TokenResult { Succeeded = false, Error = "This access token does not exist" };
             }
 
-            if (expirationDateTimeUtc > storedRefreshToken.ExpirationDate)
+            if (DateTime.UtcNow > storedRefreshToken.ExpirationDate)
             {
                 return new TokenResult { Succeeded = false, Error = "This refresh token has expired" };
             }
@@ -200,8 +198,7 @@ namespace Net7WebApiTemplate.Infrastructure.Auth
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            //var user = await _userManager.FindByEmailAsync(validatedToken.Claims.Single(x => x.Type == JwtRegisteredClaimNames.Email).Value);
-            var tokenResult = await GenerateClaimsTokenAsync(validatedToken.Claims.Single(x => x.Type == JwtRegisteredClaimNames.Email).Value, cancellationToken);
+            var tokenResult = await GenerateClaimsTokenAsync(validatedToken.Claims.Single(x => x.Type == ClaimTypes.Email).Value, cancellationToken);
 
             return tokenResult;
         }
