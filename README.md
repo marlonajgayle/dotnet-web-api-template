@@ -13,7 +13,7 @@ IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven D
 
 ## Table of Contents
 * [Prerequisites](#Prerequisites)
-* [Architecture Overview](#Architecture Overview)
+* [Architecture Overview](#Architecture)
 * [Instructions](#Instructions)
 * [Contributions](#Contributions)
 * [Credits](#Credits)
@@ -59,13 +59,13 @@ dotnet new net7webapi -
 ```
 
 #### Create initial database migration
-Install `dotnet ef` as a global tool with the following command:
+1. Install `dotnet ef` as a global tool with the following command:
 
 ```
 dotnet tool install --global dotnet-ef
 ```
 
-Create initial migration with the following command:
+2. Create initial migration with the following command:
 
 ```
 dotnet ef migrations add InitialCreate --context <ProjectNameDbContext>
