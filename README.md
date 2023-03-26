@@ -8,11 +8,12 @@
 
 A modern multi-project.NET project template that implements a maintainable enterprise-level API application with
 Api versioning, Fluent email, Fluent validation, JWT authentication, Identity role-based authorization, InMemory caching, 
-IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven Design (DDD) and architecture.
+IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven Design (DDD) and architecture princliples.
 
 
 ## Table of Contents
 * [Prerequisites](#Prerequisites)
+* [Architecture Overview](#Architecture Overview)
 * [Instructions](#Instructions)
 * [Contributions](#Contributions)
 * [Credits](#Credits)
@@ -20,22 +21,92 @@ IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven D
 
 ## Prerequisites
 You will need the following tools:
-* [Visual Studio Code or Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.0.0 or later)
+* [Visual Studio Code or Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later)
 * [.NET Core SDK 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
+
+## Architecture Overview
+This is a multi-project solution that utilizes Domain Driven Design (DDD) and CQRS patterns to create a maintainable
+web API application using .NET 7 that allows it to run on Linux or Windows and in Docker environments.
+
+Figure.1 Application structure
 
 ## Instructions
 ### Installation:
 1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download). 
-2. Run `dotnet new --install Net.WebApi.Template::1.0.0-beta.4` to install the project template
+2. Run `dotnet new --install Net.WebApi.Template::1.0.0-beta.5` to install the project template
+
+```
+C:\> dotnet new install Net.WebApi.Template::1.0.0-beta.5
+The following template packages will be installed:
+   Net.WebApi.Template::1.0.0-beta.5
+
+Success: Net.WebApi.Template::1.0.0-beta.5 installed the following templates:
+Template Name                   Short Name  Language  Tags
+------------------------------  ----------  --------  ------------------------
+.NET Web API Solution Template  net7webapi  [C#]      WebAPI/Cloud/Service/Web
+```
+
+### Using Visual Studio Code w/ Docker
+Ensure you have installed and configured docker in your environment as this will be required to run the containers.
+After installing .NET Web API Solution Template(Net.WebApi.Template::1.0.0-beta.5) 
+Launch Visual Studio Code and create your project folder.
+Open the VS Code terminal window and execute the following command to create your application:
+
+```
+dotnet new net7webapi -
+```
+
+#### Create initial database migration
+Install `dotnet ef` as a global tool with the following command:
+
+```
+dotnet tool install --global dotnet-ef
+```
+
+Create initial migration with the following command:
+
+```
+dotnet ef migrations add InitialCreate --context <ProjectNameDbContext>
+```
+
+By default, the project applies database migration on startup. If you want disable this behaviour, you can set appsettings.Local.json
+
+```
+{
+	"UseDatabaseInitializer": true
+}
+```
+
+#### Launch project with Docker
+To launch the application immediately execute the Docker compose commands
+from the root of your project:
+
+```
+docker-compose build
+```
+
+While building the docker images, you should see something like the following image, and the process should take between 
+1 and 2 minutes to complete, depending on the system speed.
+
+Deploy to the local Docker host 
+
+```
+docker-compose up
+```
+
+You should be able to browse to the application by using the below URL :
+
+```
+Swagger : http://localhost:5001/swagger
+Health : http://localhost:5001/health
+```
 
 #### Using Visual Studio:
-Select WebAPI from the project type drop down.
+Ensure Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later) is installed.
+Launch Visual Studio 2022 and Select WebAPI from the project type drop down.
 Select the .NET Web API Solution template you want to install and follow the instructions.
-
-#### Using dotnet CLI:
-Run `dotnet new net7webapi` along with any other custom options to create a project from the template.
-
 
 ### Database Setup
 To setup the SQL Server database following the instructions below:
@@ -45,12 +116,12 @@ To setup the SQL Server database following the instructions below:
 
 
 ## Third Party Libraries
+* AspNetCoreRateLimit
 * Dapper
 * Fluent Email
 * Fluent Validation
 * HashidsCore.NET
 * Mediator.SourceGenerator
-* AspNetCoreRateLimit
 * Polly
 * Serilog
 
