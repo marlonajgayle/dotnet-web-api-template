@@ -11,5 +11,12 @@
   },
   "sourceName": "Net7WebApiTemplate",
   "description": "A project template for creating ASP.NET 7 Web API multi-project solution for Windows, Linux and macOS using DDD and CQRS.",
-  "preferNameDirectory": true
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "include": [
+        "../Dockerfile"
+      ]
+    }
+  ]
 }

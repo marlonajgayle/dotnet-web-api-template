@@ -207,6 +207,12 @@ app.Use(async (context, next) =>
     await next.Invoke();
 });
 
+// Apply pending database migrations
+if (builder.Configuration.GetValue<bool>("UseDatabaseInitializer"))
+{
+    app.UseInitializeDatabase();
+}
+
 // Enable IP Rate Limiting Middleware
 app.UseIpRateLimiting();
 

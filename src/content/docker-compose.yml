@@ -8,7 +8,7 @@ services:
     environment:
       - "ASPNETCORE_ENVIRONMENT=Local"
       - "ASPNETCORE_URLS=https://+:443;http://+:80"
-      - "ConnectionStrings__Net5WebTemplateDbConnection=server=db_server;Database=applicationdb;User=sa;Password=password;MultipleActiveResultSets=true"
+      - "ConnectionStrings__DatabaseConnection=server=db_server;Database=applicationdb;User=sa;Password=password;MultipleActiveResultSets=true"
       - "ASPNETCORE_kestrel__Certificates__Default__Password=Password123"
       - "ASPNETCORE_kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
     ports:
