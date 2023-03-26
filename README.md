@@ -55,7 +55,7 @@ Launch Visual Studio Code and create your project folder.
 Open the VS Code terminal window and execute the following command to create your application:
 
 ```
-dotnet new net7webapi -
+dotnet new net7webapi --name MyProject
 ```
 
 #### Create initial database migration
@@ -64,11 +64,15 @@ dotnet new net7webapi -
 ```
 dotnet tool install --global dotnet-ef
 ```
+```
+You can invoke the tool using the following command: dotnet-ef
+Tool 'dotnet-ef' (version '7.0.4') was successfully installed.
+```
 
-2. Create initial migration with the following command:
+2. Navigate into the project folder then create initial migration with the following command:
 
 ```
-dotnet ef migrations add InitialCreate --context <ProjectNameDbContext>
+dotnet ef migrations add InitialCreate --context <ProjectNameDbContext> --startup-project src/ProjectName.Api/ProjectName.Api.csproj --project src/ProjectName.Persistence/ProjectName.Persistence.csproj
 ```
 
 By default, the project applies database migration on startup. If you want disable this behaviour, you can set appsettings.Local.json
@@ -88,7 +92,7 @@ docker-compose build
 ```
 
 While building the docker images, you should see something like the following image, and the process should take between 
-1 and 2 minutes to complete, depending on the system speed.
+1 and 3 minutes to complete, depending on the system speed.
 
 Deploy to the local Docker host 
 
