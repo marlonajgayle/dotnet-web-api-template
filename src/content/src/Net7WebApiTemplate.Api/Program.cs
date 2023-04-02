@@ -164,6 +164,14 @@ builder.Services.AddCors(options =>
             .WithMethods("OPTIONS", "GET", "POST", "PUT", "DELETE")
             .AllowCredentials();
         });
+
+    options.AddPolicy(name: "CorsPolicyAny",
+        options =>
+        {
+            options.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
 });
 
 // Register and configure API versioning
@@ -225,7 +233,7 @@ app.UseRouting();
 // Enable automatic tracing
 app.UseSentryTracing();
 
-app.UseCors();
+app.UseCors(builder.Configuration.GetValue<string>("Cors:Policy"));
 
 app.UseAuthorization();
 

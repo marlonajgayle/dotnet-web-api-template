@@ -10,7 +10,7 @@
 	</description>
     <authors>Marlon A. J. Gayle</authors>
     <license type="expression">MIT</license>
-    <repository type="git" url="https://github.com/marlonajgayle/Net7WebApiTemplate" />
+    <repository type="git" url="https://github.com/marlonajgayle/dotnet-web-api-template" />
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>

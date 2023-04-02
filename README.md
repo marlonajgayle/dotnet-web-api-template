@@ -1,8 +1,8 @@
-<img align="left" width="116" height="116" src="https://raw.githubusercontent.com/marlonajgayle/Net7WebApiTemplate/develop/src/content/.template.config/icon.png" />
+<img align="left" width="116" height="116" src="https://raw.githubusercontent.com/marlonajgayle/dotnet-web-api-template/develop/src/content/.template.config/icon.png" />
 
-# .NET Web API Solution Template
-[![Build](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/dotnet.yml)
-[![CodeQL](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/Net7WebApiTemplate/actions/workflows/codeql-analysis.yml)
+# dotnet Web API Solution Template
+[![Build](https://github.com/marlonajgayle/dotnet-web-api-template/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/dotnet-web-api-template/actions/workflows/dotnet.yml)
+[![CodeQL](https://github.com/marlonajgayle/dotnet-web-api-template/actions/workflows/codeql-analysis.yml/badge.svg?branch=develop)](https://github.com/marlonajgayle/dotnet-web-api-template/actions/workflows/codeql-analysis.yml)
 [![Boilerplate.Templates NuGet Package](https://img.shields.io/nuget/v/Net.WebApi.Template.svg)](https://www.nuget.org/packages/Net.WebApi.Template)
 [![Boilerplate.Templates NuGet Package Downloads](https://img.shields.io/nuget/dt/Net.WebApi.Template)](https://www.nuget.org/packages/Net.WebApi.Template)
 
@@ -13,7 +13,7 @@ IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven D
 
 ## Table of Contents
 * [Prerequisites](#Prerequisites)
-* [Architecture Overview](#Architecture)
+* [Architecture Overview](#Architecture-Overview)
 * [Instructions](#Instructions)
 * [Contributions](#Contributions)
 * [Credits](#Credits)
@@ -21,7 +21,7 @@ IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven D
 
 ## Prerequisites
 You will need the following tools:
-* [Visual Studio Code or Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later)
+* [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later)
 * [.NET Core SDK 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
@@ -35,14 +35,14 @@ Figure.1 Application structure
 ## Instructions
 ### Installation:
 1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download). 
-2. Run `dotnet new --install Net.WebApi.Template::1.0.0-beta.5` to install the project template
+2. Run `dotnet new --install Net.WebApi.Template::1.0.0-beta.6` to install the project template
 
 ```
-C:\> dotnet new install Net.WebApi.Template::1.0.0-beta.5
+C:\> dotnet new install Net.WebApi.Template::1.0.0-beta.6
 The following template packages will be installed:
-   Net.WebApi.Template::1.0.0-beta.5
+   Net.WebApi.Template::1.0.0-beta.6
 
-Success: Net.WebApi.Template::1.0.0-beta.5 installed the following templates:
+Success: Net.WebApi.Template::1.0.0-beta.6 installed the following templates:
 Template Name                   Short Name  Language  Tags
 ------------------------------  ----------  --------  ------------------------
 .NET Web API Solution Template  net7webapi  [C#]      WebAPI/Cloud/Service/Web
@@ -50,7 +50,7 @@ Template Name                   Short Name  Language  Tags
 
 ### Using Visual Studio Code w/ Docker
 Ensure you have installed and configured docker in your environment as this will be required to run the containers.
-After installing .NET Web API Solution Template(Net.WebApi.Template::1.0.0-beta.5) 
+After installing .NET Web API Solution Template(Net.WebApi.Template::1.0.0-beta.6) 
 Launch Visual Studio Code and create your project folder.
 Open the VS Code terminal window and execute the following command to create your application:
 
@@ -108,7 +108,7 @@ Health : http://localhost:5001/health
 ```
 
 #### Using Visual Studio:
-Ensure Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later) is installed.
+Ensure [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later) is installed.
 Launch Visual Studio 2022 and Select WebAPI from the project type drop down.
 Select the .NET Web API Solution template you want to install and follow the instructions.
 
