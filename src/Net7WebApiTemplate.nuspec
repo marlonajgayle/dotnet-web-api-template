@@ -17,6 +17,6 @@
     <tags>csharp dotnetcore project template webapi dotnet-template swagger</tags>
   </metadata>
   <files>
-    <file src="content\**\*.*" exclude="content\**\bin\**\*.*;content\**\obj\**\*.*;" target="content" />
+    <file src="content\**\*" exclude="content\**\bin\**\*.*;content\**\obj\**\*.*;" target="content" />
   </files>  
 </package>
