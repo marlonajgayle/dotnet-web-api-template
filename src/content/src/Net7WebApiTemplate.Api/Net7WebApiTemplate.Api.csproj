@@ -11,8 +11,8 @@
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  <NoWarn>$(NoWarn);1591</NoWarn>
 	  <Authors>Marlon A. J. Gayle</Authors>
-	  <PackageProjectUrl>https://github.com/marlonajgayle/Net7WebApiTemplate</PackageProjectUrl>
-	  <RepositoryUrl>https://github.com/marlonajgayle/Net7WebApiTemplate</RepositoryUrl>
+	  <PackageProjectUrl>https://github.com/marlonajgayle/dotnet-web-api-template</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/marlonajgayle/dotnet-web-api-template</RepositoryUrl>
 	  <RepositoryType>Git</RepositoryType>
 	  <PackageTags>ASP.NET Core dotnet template net7webapitemplate</PackageTags>
 	  <Description>
@@ -24,13 +24,13 @@
 	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <IsPackable>true</IsPackable>
-	  <PackageReleaseNotes>https://github.com/marlonajgayle/Net7WebApiTemplate/releases</PackageReleaseNotes>
+	  <PackageReleaseNotes>https://github.com/marlonajgayle/dotnet-web-api-template/releases</PackageReleaseNotes>
 	  <NuspecFile>..\..\..\Net7WebApiTemplate.nuspec</NuspecFile>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\README.md">
+    <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

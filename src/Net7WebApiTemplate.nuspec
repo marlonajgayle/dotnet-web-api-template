@@ -18,5 +18,6 @@
   </metadata>
   <files>
     <file src="content\**\*.*" exclude="content\**\bin\**\*.*;content\**\obj\**\*.*;" target="content" />
+    <file src="content\Dockerfile;content\.gitattributes;content\.gitignore" target="" />
   </files>  
 </package>

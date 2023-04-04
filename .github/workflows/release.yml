@@ -50,7 +50,7 @@ jobs:
     if: github.event_name == 'release'
     environment:
       name: 'GitHub Packages'
-      url: https://github.com/marlonajgayle/Net7WebApiTemplate/packages
+      url: https://github.com/marlonajgayle/dotnet-web-api-template/packages
     permissions:
       packages: write
     runs-on: windows-latest
