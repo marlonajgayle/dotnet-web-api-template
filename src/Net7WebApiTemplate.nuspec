@@ -18,6 +18,6 @@
   </metadata>
   <files>
     <file src="content\**\*.*" exclude="content\**\bin\**\*.*;content\**\obj\**\*.*;" target="content" />
-    <file src="content\Dockerfile" target="Dockerfile" />
+    <file src="content\Dockerfile" target="content" />
   </files>  
 </package>
