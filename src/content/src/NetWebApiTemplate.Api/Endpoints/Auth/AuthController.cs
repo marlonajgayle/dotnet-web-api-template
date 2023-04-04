@@ -1,17 +1,17 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Mvc;
-using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddClaimToUser;
-using Net7WebApiTemplate.Application.Features.Authentication.Commands.AddUserToRole;
-using Net7WebApiTemplate.Application.Features.Authentication.Commands.CreateRole;
-using Net7WebApiTemplate.Application.Features.Authentication.Commands.Login;
-using Net7WebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
-using Net7WebApiTemplate.Application.Features.Authentication.Commands.RegisterUser;
-using Net7WebApiTemplate.Application.Features.Authentication.Commands.RemoveUserFromRole;
-using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetAllRoles;
-using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetUserClaims;
-using Net7WebApiTemplate.Application.Features.Authentication.Queries.GetUserRoles;
+using NetWebApiTemplate.Application.Features.Authentication.Commands.AddClaimToUser;
+using NetWebApiTemplate.Application.Features.Authentication.Commands.AddUserToRole;
+using NetWebApiTemplate.Application.Features.Authentication.Commands.CreateRole;
+using NetWebApiTemplate.Application.Features.Authentication.Commands.Login;
+using NetWebApiTemplate.Application.Features.Authentication.Commands.RefreshToken;
+using NetWebApiTemplate.Application.Features.Authentication.Commands.RegisterUser;
+using NetWebApiTemplate.Application.Features.Authentication.Commands.RemoveUserFromRole;
+using NetWebApiTemplate.Application.Features.Authentication.Queries.GetAllRoles;
+using NetWebApiTemplate.Application.Features.Authentication.Queries.GetUserClaims;
+using NetWebApiTemplate.Application.Features.Authentication.Queries.GetUserRoles;
 
-namespace Net7WebApiTemplate.Api.Endpoints.Auth
+namespace NetWebApiTemplate.Api.Endpoints.Auth
 {
     [Produces("application/json")]
     [ApiController]
