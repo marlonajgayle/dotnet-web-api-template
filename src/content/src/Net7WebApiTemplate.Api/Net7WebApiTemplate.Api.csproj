@@ -27,6 +27,7 @@
 	  <PackageReleaseNotes>https://github.com/marlonajgayle/dotnet-web-api-template/releases</PackageReleaseNotes>
 	  <NuspecFile>..\..\..\Net7WebApiTemplate.nuspec</NuspecFile>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
   </PropertyGroup>
 
   <ItemGroup>
