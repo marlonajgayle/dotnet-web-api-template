@@ -25,13 +25,13 @@
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <IsPackable>true</IsPackable>
 	  <PackageReleaseNotes>https://github.com/marlonajgayle/dotnet-web-api-template/releases</PackageReleaseNotes>
-	  <NuspecFile>..\..\..\Net7WebApiTemplate.nuspec</NuspecFile>
+	  <NuspecFile>..\..\..\NetWebApiTemplate.nuspec</NuspecFile>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
     <NoDefaultExcludes>true</NoDefaultExcludes>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 	
   <ItemGroup>
@@ -61,8 +61,8 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Net7WebApiTemplate.Application\Net7WebApiTemplate.Application.csproj" />
-		<ProjectReference Include="..\Net7WebApiTemplate.Infrastructure\Net7WebApiTemplate.Infrastructure.csproj" />
-		<ProjectReference Include="..\Net7WebApiTemplate.Persistence\Net7WebApiTemplate.Persistence.csproj" />
+		<ProjectReference Include="..\NetWebApiTemplate.Application\NetWebApiTemplate.Application.csproj" />
+		<ProjectReference Include="..\NetWebApiTemplate.Infrastructure\NetWebApiTemplate.Infrastructure.csproj" />
+		<ProjectReference Include="..\NetWebApiTemplate.Persistence\NetWebApiTemplate.Persistence.csproj" />
 	</ItemGroup>
 </Project>

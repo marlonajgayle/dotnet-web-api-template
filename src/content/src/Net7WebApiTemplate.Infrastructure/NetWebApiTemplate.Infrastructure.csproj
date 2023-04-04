@@ -33,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Net7WebApiTemplate.Application\Net7WebApiTemplate.Application.csproj" />
+	  <ProjectReference Include="..\NetWebApiTemplate.Application\NetWebApiTemplate.Application.csproj" />
 	</ItemGroup>
 
 </Project>

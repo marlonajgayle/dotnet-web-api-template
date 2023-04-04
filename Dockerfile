@@ -9,26 +9,26 @@ ENV DOTNET_CLI_TELEMETRY_OUTPUT=true \
 WORKDIR /app
 
 # Copy the csproj file and restore dependencies
-COPY "Net7WebApiTemaplate.sln" "."
-COPY "src/Net7WebApiTemaplate.Api/*.csproj" "src/Net7WebApiTemaplate.Api/"
-COPY "src/Net7WebApiTemaplate.Domain/*.csproj" "src/Net7WebApiTemaplate.Domain/"
-COPY "src/Net7WebApiTemaplate.Application/*.csproj" "src/Net7WebApiTemaplate.Application/"
-COPY "src/Net7WebApiTemaplate.Infrastructure/*.csproj" "src/Net7WebApiTemaplate.Infrastructure/"
-COPY "src/Net7WebApiTemaplate.Persistence/*.csproj" "src/Net7WebApiTemaplate.Persistence/"
+COPY "NetWebApiTemaplate.sln" "."
+COPY "src/NetWebApiTemaplate.Api/*.csproj" "src/NetWebApiTemaplate.Api/"
+COPY "src/NetWebApiTemaplate.Domain/*.csproj" "src/NetWebApiTemaplate.Domain/"
+COPY "src/NetWebApiTemaplate.Application/*.csproj" "src/NetWebApiTemaplate.Application/"
+COPY "src/NetWebApiTemaplate.Infrastructure/*.csproj" "src/NetWebApiTemaplate.Infrastructure/"
+COPY "src/NetWebApiTemaplate.Persistence/*.csproj" "src/NetWebApiTemaplate.Persistence/"
 RUN dotnet restore
 
 # Copy the project files and build release
-COPY "src/Net7WebApiTemaplate.Api/." "src/Net7WebApiTemaplate.Api/"
-COPY "src/Net7WebApiTemaplate.Domain/." "src/Net7WebApiTemaplate.Domain/"
-COPY "src/Net7WebApiTemaplate.Application/." "src/Net7WebApiTemaplate.Application/"
-COPY "src/Net7WebApiTemaplate.Infrastructure/." "src/Net7WebApiTemaplate.Infrastructure/"
-COPY "src/Net7WebApiTemaplate.Persistence/." "src/Net7WebApiTemaplate.Persistence/"
-RUN dotnet build "src/Net7WebApiTemaplate.Api/src/Net7WebApiTemaplate.Api.csproj" --configuration $Configration
-RUN dotnet publish "src/Net7WebApiTemaplate.Api/src/Net7WebApiTemaplate.Api.csproj" --configuration $Configration --no-build out
+COPY "src/NetWebApiTemaplate.Api/." "src/NetWebApiTemaplate.Api/"
+COPY "src/NetWebApiTemaplate.Domain/." "src/NetWebApiTemaplate.Domain/"
+COPY "src/NetWebApiTemaplate.Application/." "src/NetWebApiTemaplate.Application/"
+COPY "src/NetWebApiTemaplate.Infrastructure/." "src/NetWebApiTemaplate.Infrastructure/"
+COPY "src/NetWebApiTemaplate.Persistence/." "src/NetWebApiTemaplate.Persistence/"
+RUN dotnet build "src/NetWebApiTemaplate.Api/src/NetWebApiTemaplate.Api.csproj" --configuration $Configration
+RUN dotnet publish "src/NetWebApiTemaplate.Api/src/NetWebApiTemaplate.Api.csproj" --configuration $Configration --no-build out
 
 # Generate runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine
 WORKDIR /app
 EXPOSE 80 443
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "Net7WebApiTemplate.Api.dll"]
+ENTRYPOINT ["dotnet", "NetWebApiTemplate.Api.dll"]
