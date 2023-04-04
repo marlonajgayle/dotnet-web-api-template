@@ -1,45 +1,38 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using FluentValidation;
+using HashidsCore.NET;
+using Mediator;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NetWebApiTemplate.Application.Features.Faqs.Interfaces;
-using NetWebApiTemplate.Application.Features.Products.Interfaces;
-using NetWebApiTemplate.Application.Shared.Interface;
-using NetWebApiTemplate.Persistence.Repositories;
+using NetWebApiTemplate.Application.Features.HealthChecks;
+using NetWebApiTemplate.Application.Shared.Behaviours;
+using System.Reflection;
 
-namespace NetWebApiTemplate.Persistence
+namespace NetWebApiTemplate.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration,
-            IWebHostEnvironment environment)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            // Register Application Health Checks
             services.AddHealthChecks()
-                .AddDbContextCheck<NetWebApiTemplateDbContext>(name: "Application Database");
+                .AddCheck<ApplicationHealthCheck>(name: "Net7WebApiTemplate API");
 
-            // Register Dapper DbContext and Repositories
-            services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IFaqRepository, FaqRepository>();
+            // Register Fluent Validation serivce
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            if (environment.IsProduction())
+            // Register Hash ids service that allows you to hash ids like youtube
+            services.AddSingleton<IHashids>(_ => new Hashids("salt", 11));
+
+            // Register MediatR Services
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediator(options =>
             {
-                services.AddDbContext<NetWebApiTemplateDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DatabaseConnection"),
-                b => b.MigrationsAssembly(typeof(NetWebApiTemplateDbContext).Assembly.FullName)));
-            }
-            else
-            {
-                services.AddDbContext<NetWebApiTemplateDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DatabaseConnection"),
-                b => b.MigrationsAssembly(typeof(Net7WebApiTemplateDbContext).Assembly.FullName))
-                .LogTo(Console.WriteLine, LogLevel.Information));
-            }
-
-            services.AddScoped<INetWebApiTemplateDbContext>(provider =>
-                provider.GetRequiredService<NetWebApiTemplateDbContext>());
+                options.Namespace = "SimpleConsole.Mediator";
+                options.ServiceLifetime = ServiceLifetime.Transient;
+            });
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+            services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 
             return services;
         }

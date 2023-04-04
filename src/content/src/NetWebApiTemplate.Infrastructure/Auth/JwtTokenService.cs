@@ -14,12 +14,12 @@ namespace NetWebApiTemplate.Infrastructure.Auth
     public class JwtTokenService : IJwtTokenService
     {
         private readonly JwtOptions _jwtOptions;
-        private readonly INet7WebApiTemplateDbContext _dbContext;
+        private readonly INetWebApiTemplateDbContext _dbContext;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly TokenValidationParameters _tokenValidationParameters;
 
-        public JwtTokenService(JwtOptions jwtOptions, INet7WebApiTemplateDbContext dbContext,
+        public JwtTokenService(JwtOptions jwtOptions, INetWebApiTemplateDbContext dbContext,
             RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager,
             TokenValidationParameters tokenValidationParameters)
         {

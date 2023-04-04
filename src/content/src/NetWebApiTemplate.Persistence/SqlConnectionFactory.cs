@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using NetWebApiTemplate.Application.Shared.Interface;
 using System.Data;
 
 namespace NetWebApiTemplate.Persistence

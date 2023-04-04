@@ -1,4 +1,4 @@
-﻿using Net7WebApiTemplate.Application.Shared.Interface;
+﻿using NetWebApiTemplate.Application.Shared.Interface;
 
 namespace NetWebApiTemplate.Infrastructure.ApiClients.GitHub
 {

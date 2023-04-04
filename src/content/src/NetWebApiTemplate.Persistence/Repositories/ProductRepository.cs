@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using NetWebApiTemplate.Application.Features.Products.Interfaces;
+using NetWebApiTemplate.Application.Shared.Interface;
 using NetWebApiTemplate.Domain.Entities;
 
 namespace NetWebApiTemplate.Persistence.Repositories

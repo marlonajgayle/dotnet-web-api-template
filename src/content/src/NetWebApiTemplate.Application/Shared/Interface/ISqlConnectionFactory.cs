@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace NetWebApiTemplate.Persistence
+namespace NetWebApiTemplate.Application.Shared.Interface
 {
     public interface ISqlConnectionFactory
     {

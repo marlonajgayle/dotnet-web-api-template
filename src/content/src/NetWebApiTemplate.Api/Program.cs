@@ -10,7 +10,6 @@ using NetWebApiTemplate.Application;
 using NetWebApiTemplate.Application.Shared.Interface;
 using NetWebApiTemplate.Infrastructure;
 using NetWebApiTemplate.Persistence;
-using NetWebApiTemplate.Application;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
