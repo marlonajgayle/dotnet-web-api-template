@@ -1,4 +1,4 @@
-﻿namespace Net7WebApiTemplate.Infrastructure.Email
+﻿namespace NetWebApiTemplate.Infrastructure.Email
 {
     public class EmailSenderOptions
     {

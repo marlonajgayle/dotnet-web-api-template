@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Net7WebApiTemplate.Infrastructure.Auth
+namespace NetWebApiTemplate.Infrastructure.Auth
 {
     public class ApplicationUser : IdentityUser
     {

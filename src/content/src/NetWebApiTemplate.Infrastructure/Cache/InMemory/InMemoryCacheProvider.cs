@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using Net7WebApiTemplate.Application.Shared.Interface;
+using NetWebApiTemplate.Application.Shared.Interface;
 
-namespace Net7WebApiTemplate.Infrastructure.Cache.InMemory
+namespace NetWebApiTemplate.Infrastructure.Cache.InMemory
 {
     public class InMemoryCacheProvider : ICacheProvider
     {

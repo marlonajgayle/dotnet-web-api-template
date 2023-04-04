@@ -2,14 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Net7WebApiTemplate.Persistence
+namespace NetWebApiTemplate.Persistence
 {
     public static class DbInitializer
     {
         public static IApplicationBuilder UseInitializeDatabase(this IApplicationBuilder application)
         {
             using var serviceScope = application.ApplicationServices.CreateScope();
-            var dbContext = serviceScope.ServiceProvider.GetService<Net7WebApiTemplateDbContext>();
+            var dbContext = serviceScope.ServiceProvider.GetService<NetWebApiTemplateDbContext>();
 
             // only call this method when there are pending migrations
             if (dbContext != null && dbContext.Database.GetPendingMigrations().Any())

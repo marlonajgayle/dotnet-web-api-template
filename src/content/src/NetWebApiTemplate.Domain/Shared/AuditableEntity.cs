@@ -1,4 +1,4 @@
-﻿namespace Net7WebApiTemplate.Domain.Shared
+﻿namespace NetWebApiTemplate.Domain.Shared
 {
     public class AuditableEntity
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Net7WebApiTemplate.Application.Features.Authentication.Models;
+using NetWebApiTemplate.Application.Features.Authentication.Models;
 
-namespace Net7WebApiTemplate.Infrastructure.Auth
+namespace NetWebApiTemplate.Infrastructure.Auth
 {
     public static class IdentityResultextensions
     {

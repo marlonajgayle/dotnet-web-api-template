@@ -1,4 +1,4 @@
-﻿namespace Net7WebApiTemplate.Api.Endpoints.Products
+﻿namespace NetWebApiTemplate.Api.Endpoints.Products
 {
     public class CreateProductRequest
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Net7WebApiTemplate.Domain.Entities;
+using NetWebApiTemplate.Domain.Entities;
 
-namespace Net7WebApiTemplate.Persistence.Configurations
+namespace NetWebApiTemplate.Persistence.Configurations
 {
     public class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCatergory>
     {

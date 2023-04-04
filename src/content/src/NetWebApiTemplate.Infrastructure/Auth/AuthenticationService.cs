@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
-using Net7WebApiTemplate.Application.Features.Authentication.Models;
-using Net7WebApiTemplate.Application.Shared.Exceptions;
+using NetWebApiTemplate.Application.Features.Authentication.Interfaces;
+using NetWebApiTemplate.Application.Features.Authentication.Models;
+using NetWebApiTemplate.Application.Shared.Exceptions;
 using System.Security.Claims;
 
-namespace Net7WebApiTemplate.Infrastructure.Auth
+namespace NetWebApiTemplate.Infrastructure.Auth
 {
     public class AuthenticationService : IAuthenticationService
     {

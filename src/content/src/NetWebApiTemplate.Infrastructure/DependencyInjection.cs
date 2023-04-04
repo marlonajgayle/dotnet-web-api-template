@@ -5,19 +5,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
-using Net7WebApiTemplate.Application.Shared.Interface;
-using Net7WebApiTemplate.Infrastructure.ApiClients.GitHub;
-using Net7WebApiTemplate.Infrastructure.Auth;
-using Net7WebApiTemplate.Infrastructure.Cache.InMemory;
-using Net7WebApiTemplate.Infrastructure.DataProtection;
-using Net7WebApiTemplate.Infrastructure.Email;
+using NetWebApiTemplate.Application.Features.Authentication.Interfaces;
+using NetWebApiTemplate.Application.Shared.Interface;
+using NetWebApiTemplate.Infrastructure.ApiClients.GitHub;
+using NetWebApiTemplate.Infrastructure.Auth;
+using NetWebApiTemplate.Infrastructure.Cache.InMemory;
+using NetWebApiTemplate.Infrastructure.DataProtection;
+using NetWebApiTemplate.Infrastructure.Email;
 using Polly;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace Net7WebApiTemplate.Infrastructure
+namespace NetWebApiTemplate.Infrastructure
 {
     public static class DependencyInjection
     {

@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Net7WebApiTemplate.Application.Shared.Interface
+namespace NetWebApiTemplate.Application.Shared.Interface
 {
     public interface ISqlConnectionFactory
     {

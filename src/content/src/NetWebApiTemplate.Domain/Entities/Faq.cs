@@ -1,4 +1,4 @@
-﻿namespace Net7WebApiTemplate.Domain.Entities
+﻿namespace NetWebApiTemplate.Domain.Entities
 {
     public class Faq
     {

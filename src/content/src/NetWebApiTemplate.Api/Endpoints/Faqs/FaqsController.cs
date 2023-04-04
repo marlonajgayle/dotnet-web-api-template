@@ -1,9 +1,9 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Mvc;
-using Net7WebApiTemplate.Api.Endpoints.Faqs;
-using Net7WebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs;
+using NetWebApiTemplate.Api.Endpoints.Faqs;
+using NetWebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs;
 
-namespace Net7WebApiTemplate.Api.Endpoints.Faq
+namespace NetWebApiTemplate.Api.Endpoints.Faq
 {
     [Produces("application/json")]
     [ApiController]

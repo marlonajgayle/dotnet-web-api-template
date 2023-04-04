@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
-namespace Net7WebApiTemplate.Persistence
+namespace NetWebApiTemplate.Persistence
 {
     public sealed class SqlConnectionFactory : ISqlConnectionFactory
     {

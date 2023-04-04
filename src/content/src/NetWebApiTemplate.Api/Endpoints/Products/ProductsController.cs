@@ -1,11 +1,11 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Mvc;
-using Net7WebApiTemplate.Application.Features.Products.Commands;
-using Net7WebApiTemplate.Application.Features.Products.Commands.DeleteProduct;
-using Net7WebApiTemplate.Application.Features.Products.Commands.UpdateProduct;
-using Net7WebApiTemplate.Application.Features.Products.Queries.GetAllProducts;
+using NetWebApiTemplate.Application.Features.Products.Commands;
+using NetWebApiTemplate.Application.Features.Products.Commands.DeleteProduct;
+using NetWebApiTemplate.Application.Features.Products.Commands.UpdateProduct;
+using NetWebApiTemplate.Application.Features.Products.Queries.GetAllProducts;
 
-namespace Net7WebApiTemplate.Api.Endpoints.Products
+namespace NetWebApiTemplate.Api.Endpoints.Products
 {
     [Produces("application/json")]
     [ApiController]

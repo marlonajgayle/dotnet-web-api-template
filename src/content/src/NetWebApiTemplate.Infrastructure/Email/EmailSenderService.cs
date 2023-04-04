@@ -1,11 +1,11 @@
 ﻿using FluentEmail.Core;
-using Net7WebApiTemplate.Application.Features.EmailNotification;
-using Net7WebApiTemplate.Application.Shared.Interface;
+using NetWebApiTemplate.Application.Features.EmailNotification;
+using NetWebApiTemplate.Application.Shared.Interface;
 using System.Dynamic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Net7WebApiTemplate.Infrastructure.Email
+namespace NetWebApiTemplate.Infrastructure.Email
 {
     public class EmailSenderService : IEmailSender
     {

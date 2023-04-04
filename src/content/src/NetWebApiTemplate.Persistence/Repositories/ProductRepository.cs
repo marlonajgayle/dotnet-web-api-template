@@ -1,8 +1,8 @@
 ﻿using Dapper;
-using Net7WebApiTemplate.Application.Features.Products.Interfaces;
-using Net7WebApiTemplate.Domain.Entities;
+using NetWebApiTemplate.Application.Features.Products.Interfaces;
+using NetWebApiTemplate.Domain.Entities;
 
-namespace Net7WebApiTemplate.Persistence.Repositories
+namespace NetWebApiTemplate.Persistence.Repositories
 {
     public class ProductRepository : IProductRepository
     {

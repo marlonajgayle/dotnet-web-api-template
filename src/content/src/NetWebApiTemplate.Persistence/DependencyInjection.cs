@@ -4,12 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Net7WebApiTemplate.Application.Features.Faqs.Interfaces;
-using Net7WebApiTemplate.Application.Features.Products.Interfaces;
-using Net7WebApiTemplate.Application.Shared.Interface;
-using Net7WebApiTemplate.Persistence.Repositories;
+using NetWebApiTemplate.Application.Features.Faqs.Interfaces;
+using NetWebApiTemplate.Application.Features.Products.Interfaces;
+using NetWebApiTemplate.Application.Shared.Interface;
+using NetWebApiTemplate.Persistence.Repositories;
 
-namespace Net7WebApiTemplate.Persistence
+namespace NetWebApiTemplate.Persistence
 {
     public static class DependencyInjection
     {
@@ -17,7 +17,7 @@ namespace Net7WebApiTemplate.Persistence
             IWebHostEnvironment environment)
         {
             services.AddHealthChecks()
-                .AddDbContextCheck<Net7WebApiTemplateDbContext>(name: "Application Database");
+                .AddDbContextCheck<NetWebApiTemplateDbContext>(name: "Application Database");
 
             // Register Dapper DbContext and Repositories
             services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
@@ -26,20 +26,20 @@ namespace Net7WebApiTemplate.Persistence
 
             if (environment.IsProduction())
             {
-                services.AddDbContext<Net7WebApiTemplateDbContext>(options =>
+                services.AddDbContext<NetWebApiTemplateDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DatabaseConnection"),
-                b => b.MigrationsAssembly(typeof(Net7WebApiTemplateDbContext).Assembly.FullName)));
+                b => b.MigrationsAssembly(typeof(NetWebApiTemplateDbContext).Assembly.FullName)));
             }
             else
             {
-                services.AddDbContext<Net7WebApiTemplateDbContext>(options =>
+                services.AddDbContext<NetWebApiTemplateDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DatabaseConnection"),
-                b => b.MigrationsAssembly(typeof(Net7WebApiTemplateDbContext).Assembly.FullName))
+                b => b.MigrationsAssembly(typeof(NetWebApiTemplateDbContext).Assembly.FullName))
                 .LogTo(Console.WriteLine, LogLevel.Information));
             }
 
-            services.AddScoped<INet7WebApiTemplateDbContext>(provider =>
-                provider.GetRequiredService<Net7WebApiTemplateDbContext>());
+            services.AddScoped<INetWebApiTemplateDbContext>(provider =>
+                provider.GetRequiredService<NetWebApiTemplateDbContext>());
 
             return services;
         }

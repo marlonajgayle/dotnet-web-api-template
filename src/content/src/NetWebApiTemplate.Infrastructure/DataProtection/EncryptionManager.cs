@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
-using Net7WebApiTemplate.Application.Shared.Interface;
+using NetWebApiTemplate.Application.Shared.Interface;
 
-namespace Net7WebApiTemplate.Infrastructure.DataProtection
+namespace NetWebApiTemplate.Infrastructure.DataProtection
 {
     public class EncryptionManager : IEncryptionManager
     {

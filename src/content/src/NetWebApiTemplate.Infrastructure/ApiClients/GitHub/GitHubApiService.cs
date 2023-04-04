@@ -1,6 +1,6 @@
 ﻿using Net7WebApiTemplate.Application.Shared.Interface;
 
-namespace Net7WebApiTemplate.Infrastructure.ApiClients.GitHub
+namespace NetWebApiTemplate.Infrastructure.ApiClients.GitHub
 {
     public class GitHubApiService : IGitHubService
     {

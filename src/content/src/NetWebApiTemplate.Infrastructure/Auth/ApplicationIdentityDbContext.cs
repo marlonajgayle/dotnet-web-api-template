@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace Net7WebApiTemplate.Infrastructure.Auth
+namespace NetWebApiTemplate.Infrastructure.Auth
 {
     public class ApplicationIdentityDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Net7WebApiTemplate.Application.Shared.Exceptions;
+using NetWebApiTemplate.Application.Shared.Exceptions;
 
-namespace Net7WebApiTemplate.Api.Filters
+namespace NetWebApiTemplate.Api.Filters
 {
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {

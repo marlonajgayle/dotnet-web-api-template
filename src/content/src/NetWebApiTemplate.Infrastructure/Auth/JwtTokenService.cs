@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Net7WebApiTemplate.Application.Features.Authentication.Interfaces;
-using Net7WebApiTemplate.Application.Features.Authentication.Models;
-using Net7WebApiTemplate.Application.Shared.Interface;
-using Net7WebApiTemplate.Domain.Entities;
+using NetWebApiTemplate.Application.Features.Authentication.Interfaces;
+using NetWebApiTemplate.Application.Features.Authentication.Models;
+using NetWebApiTemplate.Application.Shared.Interface;
+using NetWebApiTemplate.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Net7WebApiTemplate.Infrastructure.Auth
+namespace NetWebApiTemplate.Infrastructure.Auth
 {
     public class JwtTokenService : IJwtTokenService
     {

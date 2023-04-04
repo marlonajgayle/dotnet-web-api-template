@@ -1,4 +1,4 @@
-﻿namespace Net7WebApiTemplate.Api.Endpoints.Auth
+﻿namespace NetWebApiTemplate.Api.Endpoints.Auth
 {
     public class RefreshTokenRequest
     {

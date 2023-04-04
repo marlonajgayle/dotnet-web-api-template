@@ -1,4 +1,4 @@
-﻿namespace Net7WebApiTemplate.Api.Swagger
+﻿namespace NetWebApiTemplate.Api.Swagger
 {
     public class SwaggerOptions
     {

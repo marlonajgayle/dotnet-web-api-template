@@ -1,7 +1,7 @@
-﻿using Net7WebApiTemplate.Application.Shared.Interface;
+﻿using NetWebApiTemplate.Application.Shared.Interface;
 using System.Security.Claims;
 
-namespace Net7WebApiTemplate.Api.Services
+namespace NetWebApiTemplate.Api.Services
 {
     public class CurrentUserService : ICurrentUserService
     {

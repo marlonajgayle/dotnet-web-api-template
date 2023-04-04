@@ -1,4 +1,4 @@
-﻿namespace Net7WebApiTemplate.Api.Endpoints
+﻿namespace NetWebApiTemplate.Api.Endpoints
 {
     public class PaginationRequest
     {
