@@ -4,7 +4,7 @@ services:
   webapi:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: src/NetWebApiTemplate.Api/Dockerfile
     environment:
       - "ASPNETCORE_ENVIRONMENT=Local"
       - "ASPNETCORE_URLS=https://+:443;http://+:80"
