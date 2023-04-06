@@ -15,8 +15,10 @@
       <packageType name="Template" />
     </packageTypes>
     <tags>csharp dotnetcore project template webapi dotnet-template swagger</tags>
+    <readme>content\README.md</readme>
   </metadata>
   <files>
+    <files src="content\README.md" target="content\" />
     <file src="content\**\*" exclude="content\**\bin\**\*.*;content\**\obj\**\*.*;" target="content" />
   </files>  
 </package>
