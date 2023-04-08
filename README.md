@@ -187,7 +187,8 @@ To setup the SQL Server database following the instructions below:
 
 
 ## Contributions
-- [patrick-harty](https://github.com/patrick-harty)
+- [Andre Vidal](https://github.com/andre-vidal)
+- [Patrick Harty](https://github.com/patrick-harty)
 
 
 ## Credits
