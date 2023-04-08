@@ -4,22 +4,27 @@ services:
   webapi:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: src/DemoProject.Api/Dockerfile
     environment:
       - "ASPNETCORE_ENVIRONMENT=Local"
-      - "ASPNETCORE_URLS=https://+:443;http://+:80"
-      - "ConnectionStrings__DatabaseConnection=server=db_server;Database=applicationdb;User=sa;Password=password;MultipleActiveResultSets=true"
+      - "ASPNETCORE_URLS=https://+:44372;http://+:5000"
+      - "ConnectionStrings__DatabaseConnection=server=ms-sql-server;Database=applicationdb;User=sa;Password=Pa55w0rd2023;MultipleActiveResultSets=true;Encrypt=False"
       - "ASPNETCORE_kestrel__Certificates__Default__Password=Password123"
       - "ASPNETCORE_kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
     ports:
       - "5000:5000"
-      - "5001:5001"
+      - "44372:44372"
+    volumes:
+      - ~/.aspnet/https:/https:ro
     depends_on:
-      - db_server
+      - ms-sql-server
     restart: on-failure
 
-  db_server:
-    image: "mcr.microsoft.com/mssql/server"
+  ms-sql-server:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
     environment:
-      - "SA_PASSWORD=password"
+      - "MSSQL_SA_PASSWORD=Pa55w0rd2023"
       - "ACCEPT_EULA=Y"
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"

@@ -1,13 +1,13 @@
 {
   "$schema": "http://json.schemastore.org/vs-2017.3.host",
+  "order": 0,
   "icon": "icon.png",
   "symbolInfo": [
     {
-      "id": "Title",
-      "isVisible": true
-    },
-    {
-      "id": "Description",
+      "id": "Docker",
+      "name": {
+        "text": "Include Dockerfile and docker-compose.yml in the solution."
+      },
       "isVisible": true
     },
     {
@@ -18,9 +18,9 @@
       "isVisible": true
     },
     {
-      "id": "GitIgnore",
+      "id": "Sentry",
       "name": {
-        "text": "Include a Git Ignore files (.gitignore & .gitattributes) in the solution."
+        "text": "Include Sentry.io APM integration in the solution."
       },
       "isVisible": true
     }
