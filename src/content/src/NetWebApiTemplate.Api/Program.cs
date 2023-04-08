@@ -50,6 +50,7 @@ if (args != null)
     builder.Configuration.AddCommandLine(args);
 }
 
+#if Sentry
 // Configure Sentry.io APM
 builder.WebHost.UseSentry(options =>
 {
@@ -57,6 +58,7 @@ builder.WebHost.UseSentry(options =>
     // Set sample rate: capture % of transactions
     options.TracesSampleRate = env.IsProduction() ? 0.2 : 1.0;
 });
+#endif
 
 //-- Add services to the container.
 // needed to load configurations from appsettings.json
@@ -230,8 +232,10 @@ app.UseAuthentication();
 
 app.UseRouting();
 
+#if Sentry
 // Enable automatic tracing
 app.UseSentryTracing();
+#endif
 
 app.UseCors(builder.Configuration.GetValue<string>("Cors:Policy"));
 
