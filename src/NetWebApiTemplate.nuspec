@@ -18,7 +18,7 @@
     <readme>content\README.md</readme>
   </metadata>
   <files>
-    <files src="content\README.md" target="content\" />
+    <files src="content\README.md" target="\" />
     <file src="content\**\*" exclude="content\**\bin\**\*.*;content\**\obj\**\*.*;" target="content" />
   </files>  
 </package>
