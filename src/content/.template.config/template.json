@@ -9,7 +9,49 @@
     "language": "C#",
     "type": "solution"
   },
-  "sourceName": "Net7WebApiTemplate",
+  "sourceName": "NetWebApiTemplate",
   "description": "A project template for creating ASP.NET 7 Web API multi-project solution for Windows, Linux and macOS using DDD and CQRS.",
-  "preferNameDirectory": true
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!Docker)",
+          "exclude": [
+            "Dockerfile",
+            "docker-compose.yml"
+          ]
+        },
+        {
+          "condition": "(!ReadMe)",
+          "exclude": [
+            "README.md"
+          ]
+        },
+        {
+          "condition": "(!Sentry)"
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "Docker": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Adds an optimised Dockerfile and docker-compose to add the ability to build a Docker image.",
+      "defaultValue": "true"
+    },
+    "ReadMe": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Add a README.md markdown file describing the project.",
+      "defaultValue": "true"
+    },
+    "Sentry": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Adds Application Performance Monitoring (APM) using Sentry.io.",
+      "defaultValue": "false"
+    }
+  }
 }
