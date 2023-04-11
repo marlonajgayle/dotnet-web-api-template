@@ -31,6 +31,10 @@ RUN dotnet publish -c $Configuration -o out
 
 # Generate runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine
+# install cultures
+RUN apk add --no-cache icu-libs
+# Disbale the invariant mode "set in base image"
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 WORKDIR /app
 EXPOSE 80 443
 COPY --from=build-env /app/src/NetWebApiTemplate.Api/out ./

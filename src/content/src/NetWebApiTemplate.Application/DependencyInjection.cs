@@ -14,7 +14,7 @@ namespace NetWebApiTemplate.Application
         {
             // Register Application Health Checks
             services.AddHealthChecks()
-                .AddCheck<ApplicationHealthCheck>(name: "Net7WebApiTemplate API");
+                .AddCheck<ApplicationHealthCheck>(name: "NetWebApiTemplate API");
 
             // Register Fluent Validation serivce
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

@@ -78,6 +78,15 @@ dotnet ef migrations add InitialCreate --context <ProjectNameDbContext>\
 --project src/ProjectName.Persistence/ProjectName.Persistence.csproj
 ```
 
+```
+Build started...
+Build succeeded.
+Development
+Server=(localdb)\MSSQLLocalDB;Database=application_db;Trusted_Connection=True;MultipleActiveResultSets=true
+Done. To undo this action, use 'ef migrations remove'
+PS C:\rojects\MyProject> 
+```
+
 By default, the project applies database migrations on startup. If you want disable this behaviour, you can set appsettings.Local.json
 
 ```
@@ -187,7 +196,9 @@ To setup the SQL Server database following the instructions below:
 
 
 ## Contributions
-- [patrick-harty](https://github.com/patrick-harty)
+- [Andre Vidal](https://github.com/andre-vidal)
+- [Patrick Harty](https://github.com/patrick-harty)
+
 
 ## Credits
 Icon made by [DinosoftLabs](href="https://www.flaticon.com/free-icons/api) from [www.flaticon.com](https://www.flaticon.com/)
