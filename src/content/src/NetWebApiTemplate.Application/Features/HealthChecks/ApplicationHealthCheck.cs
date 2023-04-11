@@ -7,7 +7,7 @@ namespace NetWebApiTemplate.Application.Features.HealthChecks
     {
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
-            var assembly = Assembly.Load("Net7WebApiTemplate.Api");
+            var assembly = Assembly.Load("NetWebApiTemplate.Api");
             var versionNumber = assembly.GetName().Version;
 
             return Task.FromResult(HealthCheckResult.Healthy(description: $"Build {versionNumber}"));
