@@ -1,0 +1,66 @@
+{
+    "version": 2,
+    "name": "endpoint",
+    "description": "Generate a basic endpoint.",
+    "arguments": [
+      {
+        "name": "endpointNameKebab",
+        "type": "string",
+        "description": "the name for the generated endpoint. (e.g. product-category)"
+      },
+      {
+        "name": "endpointName",
+        "type": "string",
+        "description": "the name for the generated endpoint.",
+        "isPrivate": true
+      },
+      {
+        "name": "featureName",
+        "type": "string",
+        "description": "the name for the feature.",
+        "isPrivate": true
+      },
+      {
+        "name": "projectName",
+        "type": "string",
+        "description": "the name for the project.",
+        "isPrivate": true
+      }
+    ],
+    "sourceDirectory": "./",
+    "installDirectory": "__PROJECT_NAME__.Api/Endpoints/__ENDPOINT_NAME__/",
+    "files": [
+      {
+        "source": "request.cs",
+        "target": "SampleRequest.cs",
+        "content": [
+          {
+            "matchRegex": "__PROJECT_NAME__",
+            "replace": "${projectName}"
+          },
+          {
+            "matchRegex": "__ENDPOINT_NAME__",
+            "replace": "${endpointName}"
+          }
+        ]
+      },
+      {
+        "source": "controller.cs",
+        "target": "${__ENDPOINT_NAME__}Controller.cs",
+        "content": [
+          {
+            "matchRegex": "__PROJECT_NAME__",
+            "replace": "${projectName}"
+          },
+          {
+            "matchRegex": "__ENDPOINT_NAME__",
+            "replace": "${endpointName}"
+          },
+          {
+            "matchRegex": "__ENDPOINT_NAME_LOWER__",
+            "replace": "${endpointLowerName}"
+          }
+        ]
+      }
+    ]
+  }
