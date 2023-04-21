@@ -1,0 +1,42 @@
+{
+    "version": 2,
+    "name": "configuration",
+    "description": "Generate a basic configuration.",
+    "arguments": [
+      {
+        "name": "configurationNameKebab",
+        "type": "string",
+        "description": "the name for the generated configuration. (e.g. product-category)"
+      },
+      {
+        "name": "configurationName",
+        "type": "string",
+        "description": "the name for the generated configuration.",
+        "isPrivate": true
+      },
+      {
+        "name": "projectName",
+        "type": "string",
+        "description": "the name for the project.",
+        "isPrivate": true
+      }
+    ],
+    "sourceDirectory": "./",
+    "installDirectory": "__PROJECT_NAME__.Persistence/Configurations",
+    "files": [
+      {
+        "source": "configuration.cs",
+        "target": "${__CONFIGURATION_NAME__}Configuration.cs",
+        "content": [
+            {
+              "matchRegex": "__PROJECT_NAME__",
+              "replace": "${projectName}"
+            },
+            {
+              "matchRegex": "__CONFIGURATION_NAME__",
+              "replace": "${configurationName}"
+            }
+        ]
+      }
+    ]
+  }

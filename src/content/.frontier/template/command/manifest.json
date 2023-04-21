@@ -1,0 +1,70 @@
+{
+    "version": 2,
+    "name": "command",
+    "description": "Generate a basic command.",
+    "arguments": [
+      {
+        "name": "commandNameKebab",
+        "type": "string",
+        "description": "the name for the generated command. (e.g. product-category)"
+      },
+      {
+        "name": "commandName",
+        "type": "string",
+        "description": "the name for the generated command.",
+        "isPrivate": true
+      },
+      {
+        "name": "featureName",
+        "type": "string",
+        "description": "the name for the feature.",
+        "isPrivate": true
+      },
+      {
+        "name": "projectName",
+        "type": "string",
+        "description": "the name for the project.",
+        "isPrivate": true
+      }
+    ],
+    "sourceDirectory": "./",
+    "installDirectory": "__PROJECT_NAME__.Application/Features/__FEATURE_NAME__/Commands/__COMMAND_NAME__",
+    "files": [
+      {
+        "source": "command.cs",
+        "target": "${__COMMAND_NAME__}Command.cs",
+        "content": [
+          {
+            "matchRegex": "__PROJECT_NAME__",
+            "replace": "${projectName}"
+          },
+          {
+            "matchRegex": "__COMMAND_NAME__",
+            "replace": "${commandName}"
+          },
+          {
+            "matchRegex": "__FEATURE_NAME__",
+            "replace": "${featureName}"
+          }
+        ]
+      },
+      {
+        "source": "commandValidator.cs",
+        "target": "${__COMMAND_NAME__}CommandValidator.cs",
+        "content": [
+          {
+            "matchRegex": "__PROJECT_NAME__",
+            "replace": "${projectName}"
+          },
+          {
+            "matchRegex": "__COMMAND_NAME__",
+            "replace": "${commandName}"
+          },
+          {
+            "matchRegex": "__FEATURE_NAME__",
+            "replace": "${featureName}"
+          }
+        ]
+      }
+    ]
+  }

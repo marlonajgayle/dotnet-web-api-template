@@ -1,0 +1,64 @@
+{
+    "version": 2,
+    "name": "entity",
+    "description": "Generate a basic entity.",
+    "arguments": [
+      {
+        "name": "entityNameKebab",
+        "type": "string",
+        "description": "the name for the generated entity. (e.g. product-category)"
+      },
+      {
+        "name": "entityName",
+        "type": "string",
+        "description": "the name for the generated entity.",
+        "isPrivate": true
+      },
+      {
+        "name": "projectName",
+        "type": "string",
+        "description": "the name for the project.",
+        "isPrivate": true
+      }
+    ],
+    "sourceDirectory": "./",
+    "installDirectory": "__PROJECT_NAME__.Application/Features/__FEATURE_NAME__/Queries/__QUERY_NAME__",
+    "files": [
+      {
+        "source": "query.cs",
+        "target": "${__QUERY_NAME__}Query.cs",
+        "content": [
+            {
+              "matchRegex": "__PROJECT_NAME__",
+              "replace": "${projectName}"
+            },
+            {
+              "matchRegex": "__QUERY_NAME__",
+              "replace": "${entityName}"
+            },
+            {
+              "matchRegex": "__FEATURE_NAME__",
+              "replace": "${featureName}"
+            }
+        ]
+      },
+      {
+        "source": "queryValidator.cs",
+        "target": "${__QUERY_NAME__}QueryValidator.cs",
+        "content": [
+          {
+            "matchRegex": "__PROJECT_NAME__",
+            "replace": "${projectName}"
+          },
+          {
+            "matchRegex": "__QUERY_NAME__",
+            "replace": "${queryName}"
+          },
+          {
+            "matchRegex": "__FEATURE_NAME__",
+            "replace": "${featureName}"
+          }
+        ]
+      }
+    ]
+  }
