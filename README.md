@@ -35,12 +35,12 @@ Figure.1 Application structure
 ## Instructions
 ### Installation:
 1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download). 
-2. Run `dotnet new --install Net.WebApi.Template::1.0.0-rc.3` to install the project template
+2. Run `dotnet new --install Net.WebApi.Template::1.0.0-rc.4` to install the project template
 
 ```
-C:\> dotnet new install Net.WebApi.Template::1.0.0-rc.3
+C:\> dotnet new install Net.WebApi.Template::1.0.0-rc.4
 The following template packages will be installed:
-   Net.WebApi.Template::1.0.0-rc.3
+   Net.WebApi.Template::1.0.0-rc.4
 
 Success: Net.WebApi.Template::1.0.0-rc.3 installed the following templates:
 Template Name                   Short Name  Language  Tags
@@ -50,7 +50,7 @@ Template Name                   Short Name  Language  Tags
 
 ### Using Visual Studio Code w/ Docker
 Ensure you have installed and configured docker in your environment as this will be required to run the containers.
-After installing .NET Web API Solution Template(Net.WebApi.Template::1.0.0-rc.3) 
+After installing .NET Web API Solution Template(Net.WebApi.Template::1.0.0-rc.4) 
 Launch Visual Studio Code and create your project folder.
 Open the VS Code terminal window and execute the following command to create your application:
 
