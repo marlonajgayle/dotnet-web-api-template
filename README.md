@@ -168,8 +168,8 @@ While building the docker images, you should see something like the following im
 You should be able to browse to the application by using the below URL :
 
 ```
-Swagger : http://localhost:44372/swagger
-Health : http://localhost:44372/health
+Swagger : https://localhost:44372/swagger
+Health : https://localhost:44372/health
 ```
 
 #### Using Visual Studio:
