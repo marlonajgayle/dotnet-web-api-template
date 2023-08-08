@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "name": "auditable-entity",
+  "description": "Generate an auditable entity.",
+  "arguments": [
+    {
+      "name": "entityNameKebab",
+      "type": "string",
+      "description": "the name for the generated entity. (e.g. product-category)"
+    },
+    {
+      "name": "entityName",
+      "type": "string",
+      "description": "the name for the generated entity.",
+      "isPrivate": true
+    },
+    {
+      "name": "projectName",
+      "type": "string",
+      "description": "the name for the project.",
+      "isPrivate": true
+    }
+  ],
+  "sourceDirectory": "./",
+  "installDirectory": "__PROJECT_NAME__.Domain/Entities",
+  "files": [
+    {
+      "source": "entity.cs",
+      "target": "${__ENTITY_NAME__}.cs",
+      "content": [
+        {
+          "matchRegex": "__PROJECT_NAME__",
+          "replace": "${projectName}"
+        },
+        {
+          "matchRegex": "__ENTITY_NAME__",
+          "replace": "${entityName}"
+        }
+      ]
+    }
+  ]
+}
