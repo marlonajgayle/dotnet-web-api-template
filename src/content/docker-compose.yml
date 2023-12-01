@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   webapi:
+    container_name: NetWebApiTemplate
     build:
       context: .
       dockerfile: src/NetWebApiTemplate.Api/Dockerfile
@@ -15,6 +16,7 @@ services:
       - "5000:5000"
       - "44372:44372"
     volumes:
+      - ./src:/app/src
       - ~/.aspnet/https:/https:ro
     depends_on:
       - ms-sql-server
