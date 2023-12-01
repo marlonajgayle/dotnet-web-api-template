@@ -23,10 +23,10 @@ namespace NetWebApiTemplate.Persistence.Repositories
             ;
 
             using var sqlconnection = _connectionFactory.CreateConnection();
-            var entity = await sqlconnection.QueryAsync<Product, ProductCatergory, Product>
+            var entity = await sqlconnection.QueryAsync<Product, ProductCategory, Product>
                 (sql, (product, productCategory) =>
                 {
-                    product.ProductCatergory = productCategory;
+                    product.ProductCategory = productCategory;
                     return product;
                 },
                 splitOn: "CategoryID");

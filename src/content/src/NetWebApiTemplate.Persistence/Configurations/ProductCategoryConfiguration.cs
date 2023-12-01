@@ -4,9 +4,9 @@ using NetWebApiTemplate.Domain.Entities;
 
 namespace NetWebApiTemplate.Persistence.Configurations
 {
-    public class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCatergory>
+    public class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCategory>
     {
-        public void Configure(EntityTypeBuilder<ProductCatergory> builder)
+        public void Configure(EntityTypeBuilder<ProductCategory> builder)
         {
             builder.HasKey(e => e.CategoryId);
 

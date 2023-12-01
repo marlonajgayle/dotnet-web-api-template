@@ -1,6 +1,6 @@
 ﻿namespace NetWebApiTemplate.Domain.Entities
 {
-    public class ProductCatergory
+    public class ProductCategory
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; } = string.Empty;

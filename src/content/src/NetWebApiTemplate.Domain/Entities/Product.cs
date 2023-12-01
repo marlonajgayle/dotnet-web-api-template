@@ -6,7 +6,7 @@
         public string ProductName { get; set; } = string.Empty;
         public string ProductDescription { get; set; } = string.Empty;
         public decimal ProductPrice { get; set; }
-        public ProductCatergory ProductCatergory { get; set; } = new ProductCatergory();
+        public ProductCategory ProductCategory { get; set; } = new ProductCategory();
 
     }
 }
