@@ -17,6 +17,11 @@ services:
     volumes:
       - ./src:/app/src
       - ~/.aspnet/https:/https:ro
+      # Needed for Hot Reloading on Windows
+      - /app/src/obj/
+      - /app/src/bin/
+      - /app/src/NetWebApiTemplate.Api/obj/
+      - /app/src/NetWebApiTemplate.Api/bin/
     depends_on:
       - ms-sql-server
     restart: on-failure
