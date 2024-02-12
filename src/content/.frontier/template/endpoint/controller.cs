@@ -15,7 +15,7 @@ namespace __PROJECT_NAME__.Api.Endpoints.__ENDPOINT_NAME__
         }
 
         /// <summary>
-        ///  This is a simple GET request
+        ///  This is a simple POST request
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
