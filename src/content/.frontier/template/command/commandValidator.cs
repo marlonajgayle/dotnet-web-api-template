@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace __PROJECT_NAME__.Application.Features.__FEATURE_NAME__.Queries.__COMMAND_NAME__
+namespace __PROJECT_NAME__.Application.Features.__FEATURE_NAME__.Commands.__COMMAND_NAME__
 {
-    public class __COMMAND_NAME__QueryValidator : AbstractValidator<__COMMAND_NAME__Query>
+    public class __COMMAND_NAME__CommandValidator : AbstractValidator<__COMMAND_NAME__Command>
     {
-        public __COMMAND_NAME__QueryValidator()
+        public __COMMAND_NAME__CommandValidator()
         {
             RuleFor(v => v.Property1).Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage("Property1 field is required.")
