@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AllTheDucks.Application.Shared.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using NetWebApiTemplate.Application.Shared.Exceptions;
+using Sentry;
 
-namespace NetWebApiTemplate.Api.Filters
+namespace AllTheDucks.Api.Filters
 {
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
@@ -32,7 +33,8 @@ namespace NetWebApiTemplate.Api.Filters
             base.OnException(context);
 
             // log the exception
-            _logger.LogError("An exception occurred while executing request: {ex}", context.Exception);
+            // NB: Removed this line since sentry is capturing exceptions
+            // _logger.LogError("An exception occurred while executing request: {ex}", context.Exception);
         }
 
         private void HandleException(ExceptionContext context)
@@ -57,13 +59,17 @@ namespace NetWebApiTemplate.Api.Filters
         {
             var exception = context.Exception as ValidationException;
 
-            var details = new ValidationProblemDetails(exception.Errors)
+            if (exception != null)
             {
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
-            };
+                var details = new ValidationProblemDetails(exception.Errors)
+                {
+                    Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                };
+                context.Result = new BadRequestObjectResult(details);
+            }
 
-            context.Result = new BadRequestObjectResult(details);
             context.ExceptionHandled = true;
+            CaptureSentryException(context.Exception, SentryLevel.Warning);
         }
 
         private static void HandleInvalidModelStateException(ExceptionContext context)
@@ -75,6 +81,7 @@ namespace NetWebApiTemplate.Api.Filters
 
             context.Result = new BadRequestObjectResult(details);
             context.ExceptionHandled = true;
+            CaptureSentryException(context.Exception, SentryLevel.Fatal);
         }
 
         private void HandleBadRequestException(ExceptionContext context)
@@ -90,6 +97,7 @@ namespace NetWebApiTemplate.Api.Filters
 
             context.Result = new BadRequestObjectResult(details);
             context.ExceptionHandled = true;
+            CaptureSentryException(context.Exception, SentryLevel.Error);
         }
 
         private void HandleForbiddenException(ExceptionContext context)
@@ -109,6 +117,7 @@ namespace NetWebApiTemplate.Api.Filters
             };
 
             context.ExceptionHandled = true;
+            CaptureSentryException(context.Exception, SentryLevel.Error);
         }
 
         private void HandleNotFoundException(ExceptionContext context)
@@ -124,6 +133,7 @@ namespace NetWebApiTemplate.Api.Filters
 
             context.Result = new NotFoundObjectResult(details);
             context.ExceptionHandled = true;
+            CaptureSentryException(context.Exception, SentryLevel.Error);
         }
 
         private void HandleUnauthorizedException(ExceptionContext context)
@@ -139,6 +149,7 @@ namespace NetWebApiTemplate.Api.Filters
 
             context.Result = new UnauthorizedObjectResult(details);
             context.ExceptionHandled = true;
+            CaptureSentryException(context.Exception, SentryLevel.Warning);
         }
 
         private static void HandleUnknownException(ExceptionContext context)
@@ -157,6 +168,16 @@ namespace NetWebApiTemplate.Api.Filters
 
             Console.WriteLine(context.Exception.Message);
             context.ExceptionHandled = true;
+            CaptureSentryException(context.Exception, SentryLevel.Fatal);
+        }
+
+        private CaptureSentryException(Exception exception, SentryLevel level)
+        {
+            // TODO: Add some logic to determine if we should capture the exception
+            if (true)
+            {
+                SentrySdk.CaptureException(exception, (scope) => { scope.Level = level; });
+            }
         }
     }
 }
