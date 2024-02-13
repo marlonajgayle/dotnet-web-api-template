@@ -55,7 +55,7 @@ namespace NetWebApiTemplate.Api.Filters
             HandleUnknownException(context);
         }
 
-        private void HandleValidationException(ExceptionContext context)
+        private static void HandleValidationException(ExceptionContext context)
         {
             var exception = context.Exception as ValidationException;
 
@@ -84,7 +84,7 @@ namespace NetWebApiTemplate.Api.Filters
             CaptureSentryException(context.Exception, SentryLevel.Fatal);
         }
 
-        private void HandleBadRequestException(ExceptionContext context)
+        private static void HandleBadRequestException(ExceptionContext context)
         {
             var exception = context.Exception as BadRequestException;
 
@@ -120,7 +120,7 @@ namespace NetWebApiTemplate.Api.Filters
             CaptureSentryException(context.Exception, SentryLevel.Error);
         }
 
-        private void HandleNotFoundException(ExceptionContext context)
+        private static void HandleNotFoundException(ExceptionContext context)
         {
             var exception = context.Exception as NotFoundException;
 
@@ -136,7 +136,7 @@ namespace NetWebApiTemplate.Api.Filters
             CaptureSentryException(context.Exception, SentryLevel.Error);
         }
 
-        private void HandleUnauthorizedException(ExceptionContext context)
+        private static void HandleUnauthorizedException(ExceptionContext context)
         {
             var exception = context.Exception as UnauthorizedException;
 
@@ -171,7 +171,7 @@ namespace NetWebApiTemplate.Api.Filters
             CaptureSentryException(context.Exception, SentryLevel.Fatal);
         }
 
-        private CaptureSentryException(Exception exception, SentryLevel level)
+        private static void CaptureSentryException(Exception exception, SentryLevel level)
         {
             // TODO: Add some logic to determine if we should capture the exception
             if (true)
