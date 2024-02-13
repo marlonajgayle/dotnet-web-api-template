@@ -1,9 +1,9 @@
-﻿using AllTheDucks.Application.Shared.Exceptions;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using NetWebApiTemplate.Application.Shared.Exceptions;
 using Sentry;
 
-namespace AllTheDucks.Api.Filters
+namespace NetWebApiTemplate.Api.Filters
 {
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
