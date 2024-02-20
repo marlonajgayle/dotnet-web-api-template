@@ -61,7 +61,7 @@ Done. To undo this action, use 'ef migrations remove'
 PS C:\rojects\MyProject> 
 ```
 
-By default, the project applies database migrations on startup. If you want disable this behaviour, you can set appsettings.Local.json
+By default, the project will NOT applies database migrations on startup. If you want enable this behaviour, you can set appsettings.Local.json
 
 ```
 {

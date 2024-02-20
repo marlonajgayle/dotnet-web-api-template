@@ -2,20 +2,26 @@ version: '3.4'
 
 services:
   webapi:
+    container_name: NetWebApiTemplate
     build:
       context: .
       dockerfile: src/NetWebApiTemplate.Api/Dockerfile
     environment:
       - "ASPNETCORE_ENVIRONMENT=Local"
       - "ASPNETCORE_URLS=https://+:44372;http://+:5000"
-      - "ConnectionStrings__DatabaseConnection=server=ms-sql-server;Database=applicationdb;User=sa;Password=Pa55w0rd2023;MultipleActiveResultSets=true;Encrypt=False"
       - "ASPNETCORE_kestrel__Certificates__Default__Password=Password123"
       - "ASPNETCORE_kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
     ports:
       - "5000:5000"
       - "44372:44372"
     volumes:
+      - ./src:/app/src
       - ~/.aspnet/https:/https:ro
+      # Needed for Hot Reloading on Windows
+      - /app/src/obj/
+      - /app/src/bin/
+      - /app/src/NetWebApiTemplate.Api/obj/
+      - /app/src/NetWebApiTemplate.Api/bin/
     depends_on:
       - ms-sql-server
     restart: on-failure
