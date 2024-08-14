@@ -2,7 +2,8 @@
 # docker build -tag net7webapi .
 
 # Get base SDK Image from Microsoft
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
+
 ARG Configuration=Release
 ENV DOTNET_CLI_TELEMETRY_OUTPUT=true \
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
@@ -30,7 +31,7 @@ WORKDIR /app/src/NetWebApiTemplate.Api
 RUN dotnet publish -c $Configuration -o out
 
 # Generate runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine 
 # install cultures
 RUN apk add --no-cache icu-libs
 # Disbale the invariant mode "set in base image"
