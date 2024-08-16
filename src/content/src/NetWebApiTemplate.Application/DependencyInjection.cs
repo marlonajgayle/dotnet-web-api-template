@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using HashidsCore.NET;
 using Mediator;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using NetWebApiTemplate.Application.Features.HealthChecks;
 using NetWebApiTemplate.Application.Shared.Behaviours;
@@ -24,11 +25,10 @@ namespace NetWebApiTemplate.Application
 
             // Register MediatR Services
             //services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddMediator(options =>
-            {
-                options.Namespace = "SimpleConsole.Mediator";
-                options.ServiceLifetime = ServiceLifetime.Transient;
-            });
+            
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(IMediator).Assembly));
+
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
