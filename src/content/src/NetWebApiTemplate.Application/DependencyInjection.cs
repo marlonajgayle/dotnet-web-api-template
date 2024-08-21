@@ -16,23 +16,24 @@ namespace NetWebApiTemplate.Application
             services.AddHealthChecks()
                 .AddCheck<ApplicationHealthCheck>(name: "NetWebApiTemplate API");
 
-            // Register Fluent Validation serivce
+            // Register Fluent Validation service
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            // Register Hash ids service that allows you to hash ids like youtube
+            // Register Hash ids service that allows you to hash ids like YouTube
             services.AddSingleton<IHashids>(_ => new Hashids("salt", 11));
 
             // Register MediatR Services
             //services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddMediator(options =>
+            services.AddMediatR(options =>
             {
-                options.Namespace = "SimpleConsole.Mediator";
-                options.ServiceLifetime = ServiceLifetime.Transient;
+                
+                options.Lifetime = ServiceLifetime.Transient;
+                options.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                options.AddBehavior(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
+                options.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+                options.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+                options.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
             });
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-            services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
-            services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 
             return services;
         }

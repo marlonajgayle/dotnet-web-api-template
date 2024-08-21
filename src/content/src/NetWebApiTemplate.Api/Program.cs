@@ -213,7 +213,7 @@ app.UseReferrerPolicy(options => options.NoReferrerWhenDowngrade());
 // Feature-Policy security Header
 app.Use(async (context, next) =>
 {
-    context.Response.Headers.Add("Feature-Policy", "geolocation 'none'; midi 'none';");
+    context.Response.Headers.Append("Feature-Policy", "geolocation 'none'; midi 'none';");
     await next.Invoke();
 });
 
@@ -237,11 +237,11 @@ app.UseRouting();
 app.UseSentryTracing();
 #endif
 
-app.UseCors(builder.Configuration.GetValue<string>("Cors:Policy"));
+app.UseCors(builder.Configuration.GetValue<string>("Cors:Policy") ?? "Origins");
 
 app.UseAuthorization();
 
-// Configure custom healthcheck endpoint
+// Configure custom health check endpoint
 app.MapHealthChecks("/health", new HealthCheckOptions()
 {
     ResponseWriter = HealthCheckResponseWriter.WriterHealthCheckResponse,

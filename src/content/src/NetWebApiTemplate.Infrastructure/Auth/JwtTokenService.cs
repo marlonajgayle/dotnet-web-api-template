@@ -104,12 +104,16 @@ namespace NetWebApiTemplate.Infrastructure.Auth
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user?.Email ?? string.Empty),
-                new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.UtcNow.AddMinutes(_jwtOptions.Expiration.TotalMinutes)).ToUnixTimeSeconds().ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new (ClaimTypes.NameIdentifier, user.Id),
+                new (JwtRegisteredClaimNames.Email, user?.Email ?? string.Empty),
+                new (JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString()),
+                new (JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.UtcNow.AddMinutes(_jwtOptions.Expiration.TotalMinutes)).ToUnixTimeSeconds().ToString()),
+                new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+
+            // if user null, return empty claims
+            if (user == null)
+                return [];
 
             // getting the claims we have assigned to the user
             var userClaims = await _userManager.GetClaimsAsync(user);
