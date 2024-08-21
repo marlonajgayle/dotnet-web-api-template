@@ -85,7 +85,7 @@ namespace NetWebApiTemplate.Infrastructure.Auth
             var users = await _userManager.Users.ToListAsync();
             var usrs = users.Select(u => new AppUser
             {
-                Email = u.Email,
+                Email = u.Email ?? string.Empty,
                 FirstName = u.FirstName,
                 LastName = u.LastName
             }).ToList();
