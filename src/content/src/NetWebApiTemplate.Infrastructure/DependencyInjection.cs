@@ -9,10 +9,12 @@ using NetWebApiTemplate.Application.Features.Authentication.Interfaces;
 using NetWebApiTemplate.Application.Shared.Interface;
 using NetWebApiTemplate.Infrastructure.ApiClients.GitHub;
 using NetWebApiTemplate.Infrastructure.Auth;
+using NetWebApiTemplate.Infrastructure.BackgroundJobs;
 using NetWebApiTemplate.Infrastructure.Cache.InMemory;
 using NetWebApiTemplate.Infrastructure.DataProtection;
 using NetWebApiTemplate.Infrastructure.Email;
 using Polly;
+using Quartz;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -24,7 +26,25 @@ namespace NetWebApiTemplate.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration,
             IWebHostEnvironment environment)
         {
-            //
+            // Configure Quartz scheduler for background Job
+            services.AddQuartz(options =>
+            {
+                var jobKey = new JobKey(nameof(ProcessOutboxMessagesJob));
+
+                options.AddJob<ProcessOutboxMessagesJob>(jobKey)
+                .AddTrigger(trigger =>
+                    trigger.ForJob(jobKey)
+                    .WithSimpleSchedule(schedule =>
+                        schedule.WithIntervalInMinutes(3)
+                            .RepeatForever()));
+            });
+
+            // configure Quartz to wait to jobs to complete
+            services.AddQuartzHostedService(options =>
+            {
+                options.WaitForJobsToComplete = true;
+            });
+
             // Register Data Protection
             services.AddDataProtection();
             services.AddSingleton<IEncryptionManager, EncryptionManager>();
@@ -116,7 +136,6 @@ namespace NetWebApiTemplate.Infrastructure
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(identityOptionsConfig.LockoutTimeSpanInDays);
             })
             .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
-
 
             return services;
         }
