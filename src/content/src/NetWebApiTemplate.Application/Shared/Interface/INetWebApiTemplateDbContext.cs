@@ -7,8 +7,9 @@ namespace NetWebApiTemplate.Application.Shared.Interface
     {
         DbSet<Faq> Faqs { get; set; }
         DbSet<Product> Products { get; set; }
-        DbSet<ProductCatergory> ProductCatergories { get; set; }
+        DbSet<ProductCatergory> ProductCategories { get; set; }
         DbSet<RefreshToken> RefreshTokens { get; set; }
+        DbSet<Outbox> Outboxes { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
