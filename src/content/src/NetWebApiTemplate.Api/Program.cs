@@ -237,6 +237,7 @@ app.UseRouting();
 app.UseSentryTracing();
 #endif
 
+
 app.UseCors(builder.Configuration.GetValue<string>("Cors:Policy"));
 
 app.UseAuthorization();

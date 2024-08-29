@@ -35,14 +35,14 @@ Figure.1 Application structure
 ## Instructions
 ### Installation:
 1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download). 
-2. Run `dotnet new --install Net.WebApi.Template::1.0.0-rc.6` to install the project template
+2. Run `dotnet new --install Net.WebApi.Template::1.0.0-rc.5` to install the project template
 
 ```
-C:\> dotnet new install Net.WebApi.Template::1.0.0-rc.6
+C:\> dotnet new install Net.WebApi.Template::1.0.0-rc.5
 The following template packages will be installed:
-   Net.WebApi.Template::1.0.0-rc.6
+   Net.WebApi.Template::1.0.0-rc.5
 
-Success: Net.WebApi.Template::1.0.0-rc.6 installed the following templates:
+Success: Net.WebApi.Template::1.0.0-rc.5 installed the following templates:
 Template Name                   Short Name  Language  Tags
 ------------------------------  ----------  --------  ------------------------
 .NET Web API Solution Template  net7webapi  [C#]      WebAPI/Cloud/Service/Web
@@ -50,7 +50,7 @@ Template Name                   Short Name  Language  Tags
 
 ### Using Visual Studio Code w/ Docker
 Ensure you have installed and configured docker in your environment as this will be required to run the containers.
-After installing .NET Web API Solution Template(Net.WebApi.Template::1.0.0-rc.6) 
+After installing .NET Web API Solution Template(Net.WebApi.Template::1.0.0-rc.5) 
 Launch Visual Studio Code and create your project folder.
 Open the VS Code terminal window and execute the following command to create your application:
 
@@ -143,22 +143,22 @@ While building the docker images, you should see something like the following im
  => [build-env  1/16] FROM mcr.microsoft.com/dotnet/sdk:7.0@sha256:f712881bafadf0e56250ece1da28ba2baedd03fb3dd49a67f209f9d0cf928e81                                                 0.0s
  => CACHED [build-env  2/16] WORKDIR /app                                                                                                                                           0.0s
  => CACHED [build-env  3/16] COPY *.sln .                                                                                                                                           0.0s 
- => CACHED [build-env  4/16] COPY src/NetWebApiTemplate.Api/*.csproj ./src/NetWebApiTemplate.Api/                                                                                   0.0s 
- => CACHED [build-env  5/16] COPY src/NetWebApiTemplate.Domain/*.csproj ./src/NetWebApiTemplate.Domain/                                                                             0.0s 
- => CACHED [build-env  6/16] COPY src/NetWebApiTemplate.Application/*.csproj ./src/NetWebApiTemplate.Application/                                                                   0.0s 
- => CACHED [build-env  7/16] COPY src/NetWebApiTemplate.Infrastructure/*.csproj ./src/NetWebApiTemplate.Infrastructure/                                                             0.0s 
- => CACHED [build-env  8/16] COPY src/NetWebApiTemplate.Persistence/*.csproj ./src/NetWebApiTemplate.Persistence/                                                                   0.0s 
+ => CACHED [build-env  4/16] COPY src/NetWebApiTemplate.Api/*.csproj ./src/NetWebApiTemplate.Api/                                                                                               0.0s 
+ => CACHED [build-env  5/16] COPY src/NetWebApiTemplate.Domain/*.csproj ./src/NetWebApiTemplate.Domain/                                                                                         0.0s 
+ => CACHED [build-env  6/16] COPY src/NetWebApiTemplate.Application/*.csproj ./src/NetWebApiTemplate.Application/                                                                               0.0s 
+ => CACHED [build-env  7/16] COPY src/NetWebApiTemplate.Infrastructure/*.csproj ./src/NetWebApiTemplate.Infrastructure/                                                                         0.0s 
+ => CACHED [build-env  8/16] COPY src/NetWebApiTemplate.Persistence/*.csproj ./src/NetWebApiTemplate.Persistence/                                                                               0.0s 
  => CACHED [build-env  9/16] RUN dotnet restore                                                                                                                                     0.0s 
- => [build-env 10/16] COPY src/NetWebApiTemplate.Api/. ./src/NetWebApiTemplate.Api/                                                                                                 0.1s 
- => [build-env 11/16] COPY src/NetWebApiTemplate.Domain/. ./src/NetWebApiTemplate.Domain/                                                                                           0.0s
- => [build-env 12/16] COPY src/NetWebApiTemplate.Application/. ./src/NetWebApiTemplate.Application/                                                                                 0.1s 
- => [build-env 13/16] COPY src/NetWebApiTemplate.Infrastructure/. ./src/NetWebApiTemplate.Infrastructure/                                                                           0.1s 
- => [build-env 14/16] COPY src/NetWebApiTemplate.Persistence/. ./src/NetWebApiTemplate.Persistence/                                                                                 0.0s
- => [build-env 15/16] WORKDIR /app/src/NetWebApiTemplate.Api                                                                                                                        0.0s 
+ => [build-env 10/16] COPY src/NetWebApiTemplate.Api/. ./src/NetWebApiTemplate.Api/                                                                                                             0.1s 
+ => [build-env 11/16] COPY src/NetWebApiTemplate.Domain/. ./src/NetWebApiTemplate.Domain/                                                                                                       0.0s
+ => [build-env 12/16] COPY src/NetWebApiTemplate.Application/. ./src/NetWebApiTemplate.Application/                                                                                             0.1s 
+ => [build-env 13/16] COPY src/NetWebApiTemplate.Infrastructure/. ./src/NetWebApiTemplate.Infrastructure/                                                                                       0.1s 
+ => [build-env 14/16] COPY src/NetWebApiTemplate.Persistence/. ./src/NetWebApiTemplate.Persistence/                                                                                             0.0s
+ => [build-env 15/16] WORKDIR /app/src/NetWebApiTemplate.Api                                                                                                                              0.0s 
  => [build-env 16/16] RUN dotnet publish -c Release -o out                                                                                                                          7.1s 
  => CACHED [stage-1 2/4] RUN apk add --no-cache icu-libs krb5-libs libgcc libintl libssl1.1 libstdc++ zlib                                                                          0.0s
  => CACHED [stage-1 3/4] WORKDIR /app                                                                                                                                               0.0s
- => CACHED [stage-1 4/4] COPY --from=build-env /app/src/NetWebApiTemplate.Api/out ./                                                                                                0.0s 
+ => CACHED [stage-1 4/4] COPY --from=build-env /app/src/NetWebApiTemplate.Api/out ./                                                                                                      0.0s 
  => exporting to image                                                                                                                                                              0.0s 
  => => exporting layers                                                                                                                                                             0.0s 
  => => writing image sha256:c03a3d62fdb58e63dbdc63d1e39d4b5d435bdc0b3d70c575f990019316a5ff07                                                                                        0.0s 
@@ -168,8 +168,8 @@ While building the docker images, you should see something like the following im
 You should be able to browse to the application by using the below URL :
 
 ```
-Swagger : https://localhost:44372/swagger
-Health : https://localhost:44372/health
+Swagger : http://localhost:44372/swagger
+Health : http://localhost:44372/health
 ```
 
 #### Using Visual Studio:

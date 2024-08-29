@@ -65,6 +65,7 @@ namespace NetWebApiTemplate.Api.Filters
                 {
                     Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
                 };
+
                 context.Result = new BadRequestObjectResult(details);
             }
 
@@ -171,13 +172,15 @@ namespace NetWebApiTemplate.Api.Filters
             CaptureSentryException(context.Exception, SentryLevel.Fatal);
         }
 
-        private CaptureSentryException(Exception exception, SentryLevel level)
+        private static void CaptureSentryException(Exception exception, SentryLevel level)
         {
             // TODO: Add some logic to determine if we should capture the exception
             if (true)
             {
                 SentrySdk.CaptureException(exception, (scope) => { scope.Level = level; });
             }
+
+
         }
     }
 }
