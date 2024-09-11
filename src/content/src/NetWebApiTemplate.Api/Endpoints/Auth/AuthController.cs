@@ -1,4 +1,5 @@
-﻿using Mediator;
+﻿
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NetWebApiTemplate.Application.Features.Authentication.Commands.AddClaimToUser;
 using NetWebApiTemplate.Application.Features.Authentication.Commands.AddUserToRole;
