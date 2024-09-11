@@ -1,7 +1,8 @@
-﻿using Mediator;
+﻿using MediatR;
 using NetWebApiTemplate.Application.Features.Authentication.Interfaces;
 using NetWebApiTemplate.Application.Features.Authentication.Models;
 using NetWebApiTemplate.Application.Shared.Exceptions;
+using NetWebApiTemplate.Application.Shared.Interface;
 
 namespace NetWebApiTemplate.Application.Features.Authentication.Commands.RegisterUser
 {
@@ -16,13 +17,16 @@ namespace NetWebApiTemplate.Application.Features.Authentication.Commands.Registe
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly IOutboxService _outboxService;
 
-        public RegisterUserCommandHandler(IAuthenticationService authenticationService)
+        public RegisterUserCommandHandler(IAuthenticationService authenticationService, 
+            IOutboxService outboxService)
         {
             _authenticationService = authenticationService;
+            _outboxService = outboxService;
         }
 
-        public async ValueTask<Unit> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var user = new AppUser
             {
@@ -38,7 +42,15 @@ namespace NetWebApiTemplate.Application.Features.Authentication.Commands.Registe
                 throw new BadRequestException("failed to register user.");
             }
 
-            return Unit.Value;
+            // store domain event to outbox
+            await _outboxService.StoreDomainEvent(new UserRegisteredEvent
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email
+            }, cancellationToken);
+
+           
         }
     }
 }
