@@ -15,7 +15,7 @@ namespace NetWebApiTemplate.Persistence
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCatergory> ProductCategories { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
-        public DbSet<Outbox> Outboxes { get; set; }
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
 
         public NetWebApiTemplateDbContext(DbContextOptions<NetWebApiTemplateDbContext> options)
             : base(options)

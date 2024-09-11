@@ -4,9 +4,9 @@ using NetWebApiTemplate.Domain.Entities;
 
 namespace NetWebApiTemplate.Persistence.Configurations
 {
-    public class OutboxConfiguration : IEntityTypeConfiguration<Outbox>
+    public class OutboxMessageConfiguration : IEntityTypeConfiguration<OutboxMessage>
     {
-        public void Configure(EntityTypeBuilder<Outbox> builder)
+        public void Configure(EntityTypeBuilder<OutboxMessage> builder)
         {
             builder.HasKey(e => e.Id)
                 .IsClustered(false);

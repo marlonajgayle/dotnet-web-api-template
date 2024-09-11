@@ -1,6 +1,6 @@
 ﻿namespace NetWebApiTemplate.Domain.Entities
 {
-    public class Outbox
+    public class OutboxMessage
     {
         public Guid Id { get; set; }
         public string MessageType { get; set; } = string.Empty;
