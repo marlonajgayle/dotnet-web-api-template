@@ -2,7 +2,7 @@
 using NetWebApiTemplate.Application.Shared.Interface;
 using NetWebApiTemplate.Domain.Entities;
 using NetWebApiTemplate.Domain.Shared;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace NetWebApiTemplate.Infrastructure.Outboxes
 {
@@ -16,12 +16,17 @@ namespace NetWebApiTemplate.Infrastructure.Outboxes
         public async Task StoreDomainEvent(IDomainEvent domainEvent, 
             CancellationToken cancellationToken)
         {
-            await _dbContext.Outboxes.AddAsync(new Outbox
+            await _dbContext.OutboxMessages.AddAsync(new OutboxMessage
             {
                 Id = Guid.NewGuid(),
                 CreatedAt = DateTime.UtcNow,
                 MessageType = domainEvent.GetType().Name,
-                Payload = JsonSerializer.Serialize(domainEvent)
+                Payload = JsonConvert.SerializeObject(
+                    domainEvent,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    })
             }, cancellationToken);
 
             try

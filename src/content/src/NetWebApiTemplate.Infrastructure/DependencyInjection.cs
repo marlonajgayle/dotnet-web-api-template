@@ -13,6 +13,7 @@ using NetWebApiTemplate.Infrastructure.BackgroundJobs;
 using NetWebApiTemplate.Infrastructure.Cache.InMemory;
 using NetWebApiTemplate.Infrastructure.DataProtection;
 using NetWebApiTemplate.Infrastructure.Email;
+using NetWebApiTemplate.Infrastructure.Outboxes;
 using Polly;
 using Quartz;
 using System.Net;
@@ -136,6 +137,9 @@ namespace NetWebApiTemplate.Infrastructure
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(identityOptionsConfig.LockoutTimeSpanInDays);
             })
             .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
+
+            // register Outbox Service
+            services.AddScoped<IOutboxService, OutboxService>();
 
             return services;
         }

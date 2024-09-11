@@ -1,10 +1,10 @@
-﻿using Mediator;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NetWebApiTemplate.Application.Shared.Interface;
 using NetWebApiTemplate.Domain.Shared;
+using Newtonsoft.Json;
 using Quartz;
-using System.Text.Json;
 
 namespace NetWebApiTemplate.Infrastructure.BackgroundJobs
 {
@@ -26,7 +26,7 @@ namespace NetWebApiTemplate.Infrastructure.BackgroundJobs
                 DateTime.UtcNow);
 
             var unprocessedOutboxMessages = await _dbContext
-                .Outboxes
+                .OutboxMessages
                 .Where(o => o.ProcessedAt == null)
                 .OrderByDescending(o => o.CreatedAt)
                 .Take(BatchSize)
@@ -36,8 +36,12 @@ namespace NetWebApiTemplate.Infrastructure.BackgroundJobs
             {
                 try
                 {
-                    var domainEvent = JsonSerializer
-                        .Deserialize<IDomainEvent>(unprocessedOutboxMessage.Payload);
+                    IDomainEvent? domainEvent = JsonConvert
+                        .DeserializeObject<IDomainEvent>(unprocessedOutboxMessage.Payload, 
+                        new JsonSerializerSettings 
+                        {
+                            TypeNameHandling = TypeNameHandling.Auto
+                        });
 
                     if (domainEvent is null)
                     {
@@ -56,7 +60,7 @@ namespace NetWebApiTemplate.Infrastructure.BackgroundJobs
                     unprocessedOutboxMessage.Error = ex.Message;
 
                     _logger.LogCritical(ex, "An exception occurred when processing outbox message Ex: {message}", ex.Message);
-                    _dbContext.Outboxes.Update(unprocessedOutboxMessage);
+                    _dbContext.OutboxMessages.Update(unprocessedOutboxMessage);
                 }
 
                 try
