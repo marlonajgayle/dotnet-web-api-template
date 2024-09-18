@@ -22,7 +22,7 @@ IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven D
 ## Prerequisites
 You will need the following tools:
 * [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later)
-* [.NET Core SDK 8.0](https://dotnet.microsoft.com/download/dotnet/7.0)
+* [.NET Core SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 
@@ -198,14 +198,15 @@ To setup the SQL Server database following the instructions below:
 ## Contributions
 - [Andre Vidal](https://github.com/andre-vidal)
 - [Patrick Harty](https://github.com/patrick-harty)
+- [Mitzi-Ann Miller](https://github.com/mitziemill)
 
 
 ## Credits
 Icon made by [DinosoftLabs](href="https://www.flaticon.com/free-icons/api) from [www.flaticon.com](https://www.flaticon.com/)
 
 ## Versions
-The [main](https://github.com/marlonajgayle/Net7WebApiTemplate/main) branch is running .NET 8.0
+The [main](https://github.com/marlonajgayle/dotnet-web-api-template/main) branch is running .NET 8.0
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/marlonajgayle/Net7WebApiTemplate/main/LICENSE.md) [main](https://github.com/marlonajgayle/Net6WebApiTemplate/main) branch is running .NET 7.0
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/marlonajgayle/dotnet-web-api-template/main/LICENSE.md) [main](https://github.com/marlonajgayle/Net6WebApiTemplate/main) branch is running .NET 8.0
 file for details.
