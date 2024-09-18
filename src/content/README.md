@@ -22,19 +22,19 @@ IP rate limiting, CQRS with Mediator, Sirilog, and Swagger using Domain Driven D
 ## Prerequisites
 You will need the following tools:
 * [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (version 17.5.0 or later)
-* [.NET Core SDK 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
+* [.NET Core SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 
 ## Architecture Overview
 This is a multi-project solution that utilizes Domain Driven Design (DDD) and CQRS patterns to create a maintainable
-web API application using .NET 7 that allows it to run on Linux or Windows and in Docker environments.
+web API application using .NET 8 that allows it to run on Linux or Windows and in Docker environments.
 
 Figure.1 Application structure
 
 ## Instructions
 ### Installation:
-1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download). 
+1. Install the latest [.NET Core 8 SDK](https://dotnet.microsoft.com/download). 
 2. Run `dotnet new --install Net.WebApi.Template::1.0.0-rc.6` to install the project template
 
 ```
@@ -45,7 +45,7 @@ The following template packages will be installed:
 Success: Net.WebApi.Template::1.0.0-rc.6 installed the following templates:
 Template Name                   Short Name  Language  Tags
 ------------------------------  ----------  --------  ------------------------
-.NET Web API Solution Template  net7webapi  [C#]      WebAPI/Cloud/Service/Web
+.NET Web API Solution Template  netwebapi  [C#]      WebAPI/Cloud/Service/Web
 ```
 
 ### Using Visual Studio Code w/ Docker
@@ -55,7 +55,7 @@ Launch Visual Studio Code and create your project folder.
 Open the VS Code terminal window and execute the following command to create your application:
 
 ```
-dotnet new net7webapi --name MyProject
+dotnet new netwebapi --name MyProject
 ```
 
 #### Create initial database migration
@@ -67,7 +67,7 @@ dotnet tool install --global dotnet-ef
 ```
 ```
 You can invoke the tool using the following command: dotnet-ef
-Tool 'dotnet-ef' (version '7.0.4') was successfully installed.
+Tool 'dotnet-ef' (version '8.0.4') was successfully installed.
 ```
 
 3. Next create initial database migration with the following command:
@@ -198,14 +198,15 @@ To setup the SQL Server database following the instructions below:
 ## Contributions
 - [Andre Vidal](https://github.com/andre-vidal)
 - [Patrick Harty](https://github.com/patrick-harty)
+- [Mitzi-Ann Miller](https://github.com/mitziemill)
 
 
 ## Credits
 Icon made by [DinosoftLabs](href="https://www.flaticon.com/free-icons/api) from [www.flaticon.com](https://www.flaticon.com/)
 
 ## Versions
-The [main](https://github.com/marlonajgayle/Net7WebApiTemplate/main) branch is running .NET 7.0
+The [main](https://github.com/marlonajgayle/dotnet-web-api-template/main) branch is running .NET 8.0
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/marlonajgayle/Net7WebApiTemplate/main/LICENSE.md) [main](https://github.com/marlonajgayle/Net6WebApiTemplate/main) branch is running .NET 7.0
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/marlonajgayle/dotnet-web-api-template/main/LICENSE.md) [main](https://github.com/marlonajgayle/Net6WebApiTemplate/main) branch is running .NET 8.0
 file for details.

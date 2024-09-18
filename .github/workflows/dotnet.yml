@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, main ]
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, main ]
   
 env:
   # Disable sending .NET CLI telemetry to Microsoft.
@@ -21,10 +21,10 @@ jobs:
     steps:
     - name: 'Checkout Source Code'
       uses: actions/checkout@v3
-    - name: 'Install .NET Core 7.0.x SDK'
+    - name: 'Install .NET Core 8.0.x SDK'
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
     - name: 'Restore .NET Dependencies'
       run: dotnet restore
     - name: 'Execute Dotnet Build'

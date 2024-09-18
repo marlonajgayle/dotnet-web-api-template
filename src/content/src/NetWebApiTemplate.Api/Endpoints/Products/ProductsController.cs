@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NetWebApiTemplate.Application.Features.Products.Commands;
 using NetWebApiTemplate.Application.Features.Products.Commands.DeleteProduct;

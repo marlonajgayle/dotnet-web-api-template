@@ -13,8 +13,9 @@ namespace NetWebApiTemplate.Persistence
 
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCatergory> ProductCatergories { get; set; }
+        public DbSet<ProductCatergory> ProductCategories { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
 
         public NetWebApiTemplateDbContext(DbContextOptions<NetWebApiTemplateDbContext> options)
             : base(options)
@@ -55,6 +56,5 @@ namespace NetWebApiTemplate.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(NetWebApiTemplateDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }

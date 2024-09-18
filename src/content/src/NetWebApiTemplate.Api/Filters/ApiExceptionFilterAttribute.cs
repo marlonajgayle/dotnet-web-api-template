@@ -171,7 +171,7 @@ namespace NetWebApiTemplate.Api.Filters
             CaptureSentryException(context.Exception, SentryLevel.Fatal);
         }
 
-        private CaptureSentryException(Exception exception, SentryLevel level)
+        private static void CaptureSentryException(Exception exception, SentryLevel level)
         {
             // TODO: Add some logic to determine if we should capture the exception
             if (true)

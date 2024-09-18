@@ -1,4 +1,5 @@
-﻿using Mediator;
+﻿
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NetWebApiTemplate.Api.Endpoints.Faqs;
 using NetWebApiTemplate.Application.Features.Faqs.Queries.GetAllFaqs;
