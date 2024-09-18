@@ -4,7 +4,7 @@
   "classifications": [ "WebAPI", "Cloud", "Service", "Web" ],
   "identity": "dotnet.webapi.template",
   "name": ".NET Web API Solution Template",
-  "shortName": "net7webapi",
+  "shortName": "netwebapi",
   "tags": {
     "language": "C#",
     "type": "solution"

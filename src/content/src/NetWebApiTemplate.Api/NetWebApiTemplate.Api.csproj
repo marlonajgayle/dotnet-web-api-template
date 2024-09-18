@@ -14,7 +14,7 @@
 	  <PackageProjectUrl>https://github.com/marlonajgayle/dotnet-web-api-template</PackageProjectUrl>
 	  <RepositoryUrl>https://github.com/marlonajgayle/dotnet-web-api-template</RepositoryUrl>
 	  <RepositoryType>Git</RepositoryType>
-	  <PackageTags>ASP.NET Core dotnet template net7webapitemplate</PackageTags>
+	  <PackageTags>ASP.NET Core dotnet template netwebapitemplate</PackageTags>
 	  <Description>
 		  A modern multi-project.NET project template that implements a maintainable enterprise-level API application with
 		  Api versioning, Fluent email, Fluent validation, JWT authentication, Identity role-based authorization, InMemory caching,
